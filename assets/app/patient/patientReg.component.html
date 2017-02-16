@@ -1,0 +1,74 @@
+
+
+<form class="form-horizontal" (ngSubmit)="registerPatient(f)" #f="ngForm">
+    <div class="form-group">
+        <label class="control-label col-md-4" for="email">Email:</label>
+        <div class="col-md-6">
+            <input type="email" [ngModel]="user?.email" name = "email" class="form-control" id="email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-4" for="password">Password:</label>
+        <div class="col-md-6">
+            <input type="password" [ngModel]="user?.password" name = "password" class="form-control" id="password">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-4" for="password">Repeat Password:</label>
+        <div class="col-md-6">
+            <input type="password" [ngModel]="user?.repassword" name = "repassword" class="form-control" id="repassword">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-4" for="firstname">First Name:</label>
+        <div class="col-md-6">
+            <input type="text" [ngModel]="user?.firstname" name = "firstname" class="form-control" id="firstname">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-4" for="lastname">Last Name:</label>
+        <div class="col-md-6">
+            <input type="text" [ngModel]="user?.lastname" name = "lastname" class="form-control" id="lastname">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-4" for="lastname">Date of Birth:</label>
+        <div class="col-md-6">
+            <input type="text" [ngModel]="user?.dob" name = "dob" class="form-control" id="dob">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-4" for="selectgender">Select Gender:</label>
+        <div class="col-md-6">
+            <select class="form-control" id="selectgender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+    </div>  
+    <div class="form-group">
+        <label class="control-label col-md-4" for="selectinsurance">Select Insurance Provider:</label>
+        <div class="col-md-6">
+            <select class="form-control" id="selectinsurance">
+                <option>XYZ</option>
+                <option>XYZ</option>
+                <option>XYZ</option>
+                <option>XYZ</option>                
+            </select>
+        </div>
+    </div>   
+
+    <div class="form-group">
+       <label class="control-label col-md-4" for="allergies">Allergies:</label>
+       <div class="col-md-6">
+           <textarea class="form-control" rows="5" id="allergies" placeholder="Seperate with comma"></textarea>
+       </div>
+   </div>
+
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <button class="btn btn-default" type="submit">Submit</button>
+        </div>
+    </div>       
+</form>
