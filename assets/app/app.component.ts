@@ -9,11 +9,11 @@ import { dbService } from './service/db.service';
     providers: [dbService]
 })
 export class AppComponent {
-    pageTitle: string = "eSchedular";
+    pageTitle: string = "e-Medical Scheduler";
 
     constructor(private _route: ActivatedRoute, private _router: Router){}
 
     regPatient() : void {
-        this._router.navigate(['/patient-registeration']);
+        this._router.navigate(['/patient-registration']);
     }
 }

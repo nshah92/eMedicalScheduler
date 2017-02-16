@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent} from './HomePage/landingPage.component';
 import { PatientRegComponent } from './patient/patientReg.component';
 import { PhysicianRegComponent } from './doctor/physicianReg.component';
+import { MainPageComponent } from "./MainPage/main-page.component";
 
 const APP_ROUTES: Routes = [
     { path: 'home', component: LandingPageComponent },
-    { path: 'patient-registeration', component: PatientRegComponent },
+    { path: 'physicianlocator', component: MainPageComponent },
+    { path: 'patient-registration', component: PatientRegComponent },
     { path: 'physician-registration', component: PhysicianRegComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
