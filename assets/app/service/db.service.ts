@@ -14,8 +14,6 @@ export class dbService {
         console.log("User:",user);
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-
-
         return this.http.post('http://localhost:3000/userreg', body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
