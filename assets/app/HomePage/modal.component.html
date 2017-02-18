@@ -1,23 +1,42 @@
 
 <div class="container">
-  <div >
+  <form [formGroup]="myForm" (ngSubmit)="onSignin()">
+
+    <!--Email-->
     <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-1 col-form-label">Email</label>
+      <label for="signinEmail" class="col-sm-1 col-form-label">Email</label>
       <div class="col-sm-5">
-        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        <input 
+            type="email" 
+            class="form-control" 
+            id="signinEmail" 
+            placeholder="Email"
+            formControlName="email">
       </div>
     </div>
+
+    <!--Password-->
     <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-1 col-form-label">Password</label>
+      <label for="signinPassword" class="col-sm-1 col-form-label">Password</label>
       <div class="col-sm-5">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+        <input 
+            type="password" 
+            class="form-control" 
+            id="signinPassword" 
+            placeholder="Password"
+            formControlName="password">
       </div>
     </div>
     
+    <!--Sign In Button-->
     <div class="form-group row">
       <div class="offset-sm-1 col-sm-10">
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="!myForm.valid">Sign In</button>
       </div>
     </div>
-  </div>
+
+  </form>
 </div>
