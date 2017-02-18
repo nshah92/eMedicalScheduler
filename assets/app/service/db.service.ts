@@ -21,10 +21,10 @@ export class dbService {
                                         result.obj.password, 
                                         result.obj.firstname,
                                         result.obj.lastname, 
-                                        "Male", 
                                         result.obj.dob, 
-                                        "XYZ", 
-                                        "XYZ");
+                                        result.obj.selectgender, 
+                                        result.obj.selectinsurance, 
+                                        result.obj.allergies);
                 this.user.push(user);
                 return user;
             })

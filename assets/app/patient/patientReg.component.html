@@ -1,74 +1,104 @@
-
-
 <form class="form-horizontal" (ngSubmit)="registerPatient(f)" #f="ngForm">
+    
+    <!--Email-->
     <div class="form-group">
         <label class="control-label col-md-4" for="email">Email:</label>
         <div class="col-md-6">
-            <input type="email" [ngModel]="user?.email" name = "email" class="form-control" id="email">
+            <input type="email" [ngModel]="user?.email" name="email" class="form-control" id="email" 
+            pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" #email="ngModel" required>
+            <small [hidden]="email.valid || (email.pristine && !f.submitted)" class="text-danger">
+                Email is required and format should be <i>john@doe.com</i>.
+            </small>
         </div>
     </div>
+    
+    <!--Password-->
     <div class="form-group">
         <label class="control-label col-md-4" for="password">Password:</label>
         <div class="col-md-6">
-            <input type="password" [ngModel]="user?.password" name = "password" class="form-control" id="password">
+            <input type="password" [ngModel]="user?.password" name="password" class="form-control" id="password" 
+            validateEqual="repassword" reverse="true" #password="ngModel" required>
+            <small [hidden]="password.valid || (password.pristine && !f.submitted)" class="text-danger">
+                Please choose a strong Password
+            </small>
         </div>
     </div>
+    
+    <!--RePassword-->
     <div class="form-group">
-        <label class="control-label col-md-4" for="password">Repeat Password:</label>
+        <label class="control-label col-md-4" for="repassword">Repeat Password:</label>
         <div class="col-md-6">
-            <input type="password" [ngModel]="user?.repassword" name = "repassword" class="form-control" id="repassword">
+            <input type="password" [ngModel]="user?.repassword" name="repassword" class="form-control" id="repassword"
+            validateEqual="password" reverse="false" #repassword="ngModel" required>
+            <small [hidden]="repassword.valid || (repassword.pristine && !f.submitted)" class="text-danger">
+                Password mismatch
+            </small>
         </div>
     </div>
+    
+    <!--First Name-->
     <div class="form-group">
         <label class="control-label col-md-4" for="firstname">First Name:</label>
         <div class="col-md-6">
-            <input type="text" [ngModel]="user?.firstname" name = "firstname" class="form-control" id="firstname">
+            <input type="text" [ngModel]="user?.firstname" name="firstname" class="form-control" id="firstname" required>
         </div>
     </div>
+    
+    <!--Last Name-->
     <div class="form-group">
         <label class="control-label col-md-4" for="lastname">Last Name:</label>
         <div class="col-md-6">
-            <input type="text" [ngModel]="user?.lastname" name = "lastname" class="form-control" id="lastname">
+            <input type="text" [ngModel]="user?.lastname" name="lastname" class="form-control" id="lastname" required>
         </div>
     </div>
+    
+    <!--Date of Birth-->
     <div class="form-group">
-        <label class="control-label col-md-4" for="lastname">Date of Birth:</label>
+        <label class="control-label col-md-4" for="dob">Date of Birth:</label>
         <div class="col-md-6">
-            <input type="text" [ngModel]="user?.dob" name = "dob" class="form-control" id="dob">
+            <input type="date" [ngModel]="user?.dob" name="dob" class="form-control" id="dob" required >
         </div>
     </div>
+    
+    <!--Gender-->
     <div class="form-group">
         <label class="control-label col-md-4" for="selectgender">Select Gender:</label>
         <div class="col-md-6">
-            <select class="form-control" id="selectgender">
+            <select class="form-control" id="selectgender" name="selectgender" [ngModel]="user?.selectgender" class="form-control" required>
                 <option>Male</option>
                 <option>Female</option>
+                <option>Others</option>
             </select>
         </div>
-    </div>  
+    </div>
+    
+    <!--Insurance-->
     <div class="form-group">
         <label class="control-label col-md-4" for="selectinsurance">Select Insurance Provider:</label>
         <div class="col-md-6">
-            <select class="form-control" id="selectinsurance">
-                <option>XYZ</option>
-                <option>XYZ</option>
-                <option>XYZ</option>
-                <option>XYZ</option>                
+            <select class="form-control" id="selectinsurance" name="selectinsurance" [ngModel]="user?.selectinsurance" class="form-control" required>
+                <option>Insurance Company 1</option>
+                <option>Insurance Company 2</option>
+                <option>Insurance Company 3</option>
+                <option>Insurance Company 4</option> 
+                <option>Insurance Company 5</option>                
             </select>
         </div>
-    </div>   
+    </div>
 
+    <!--Allergies-->
     <div class="form-group">
-       <label class="control-label col-md-4" for="allergies">Allergies:</label>
-       <div class="col-md-6">
-           <textarea class="form-control" rows="5" id="allergies" placeholder="Seperate with comma"></textarea>
-       </div>
-   </div>
+        <label class="control-label col-md-4" for="allergies">Allergies:</label>
+        <div class="col-md-6">
+            <textarea class="form-control" rows="5" name="allergies" id="allergies" placeholder="Seperate with comma" 
+            [ngModel]="user?.allergies"  class="form-control"></textarea>
+        </div>
+    </div>
 
-
+    <!--Sign Up Button-->
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
-            <button class="btn btn-default" type="submit">Submit</button>
+            <button class="btn btn-default" type="submit" [disabled]="!f.valid">Sign Up</button>
         </div>
-    </div>       
+    </div>
 </form>

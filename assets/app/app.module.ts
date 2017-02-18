@@ -10,6 +10,7 @@ import { PatientRegComponent } from "./patient/patientReg.component";
 import { PhysicianRegComponent } from "./doctor/physicianReg.component";
 import { MainPageComponent } from "./MainPage/main-page.component";
 import { ListDoctorComponent } from "./MainPage/doctorlist/list-doctor.component";
+import { EqualValidator } from "./validators/equal-validator.directive";
 import { routing } from "./app.routing";
 
 @NgModule({
@@ -20,7 +21,8 @@ import { routing } from "./app.routing";
         PatientRegComponent,
         PhysicianRegComponent,
         MainPageComponent,
-        ListDoctorComponent
+        ListDoctorComponent,
+        EqualValidator
     ],
     imports: [  BrowserModule, 
                 routing,  
