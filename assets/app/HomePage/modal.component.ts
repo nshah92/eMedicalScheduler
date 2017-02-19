@@ -16,16 +16,17 @@ export class ModalComponent {
     constructor(private dbService: dbService, private router: Router) {}
 
     onSignin() {
-        /*const user = new User(this.myForm.value.email, this.myForm.value.password);
-        this.authService.signin(user)
+        const user = new User(this.myForm.value.email, this.myForm.value.password);
+        this.dbService.signin(user)
             .subscribe(
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
                     this.router.navigateByUrl('/');
                 },
-                error => console.error(error)
-            );*/
+                error => console.log(error)
+            );
+
         console.log("Email: ", this.myForm.value.email);
         console.log("Password: ", this.myForm.value.password);
         this.myForm.reset();
