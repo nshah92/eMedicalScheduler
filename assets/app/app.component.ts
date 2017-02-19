@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { dbService } from './service/db.service';
 
-
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
@@ -14,6 +13,10 @@ export class AppComponent {
 
     isLoggedIn() {
         return this.service.isLoggedIn();
+    }
+
+    logout() {
+        this.service.logout();
     }
 
     regPatient() : void {
