@@ -6,12 +6,15 @@ import { dbService } from './service/db.service';
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
-    providers: [dbService]
 })
 export class AppComponent {
     pageTitle: string = "e-Medical Scheduler";
 
-    constructor(private _route: ActivatedRoute, private _router: Router){}
+    constructor(private service: dbService, private _router: Router){}
+
+    isLoggedIn() {
+        return this.service.isLoggedIn();
+    }
 
     regPatient() : void {
         this._router.navigate(['/patient-registration']);
