@@ -12,6 +12,7 @@ import { MainPageComponent } from "./MainPage/main-page.component";
 import { ListDoctorComponent } from "./MainPage/doctorlist/list-doctor.component";
 import { EqualValidator } from "./validators/equal-validator.directive";
 import { routing } from "./app.routing";
+import { dbService } from "./service/db.service"
 
 @NgModule({
     declarations: [
@@ -28,9 +29,11 @@ import { routing } from "./app.routing";
                 routing,  
                 FormsModule,
                 ReactiveFormsModule,
-                HttpModule],
+                HttpModule ],
+    providers: [ dbService ],
     bootstrap: [AppComponent]
 })
+
 export class AppModule {
 
 }
