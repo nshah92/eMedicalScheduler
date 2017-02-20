@@ -1,6 +1,6 @@
 
 <div class="container">
-  <form [formGroup]="myForm" (ngSubmit)="onSignin()">
+  <form [formGroup]="myForm">
 
     <!--Email-->
     <div class="form-group row">
@@ -27,6 +27,13 @@
             formControlName="password">
       </div>
     </div>
+
+    <!--error-->
+    <div class="form-group row" *ngIf="!this.dbService.isLoggedIn() && this.dbService.clickNo > 0">
+      <div class="col-sm-5 col-sm-offset-1">
+        <label for="errormessage" class="errorr"><em>Invalid login credentials</em></label>
+      </div>
+    </div>
     
     <!--Sign In Button-->
     <div class="form-group row">
@@ -34,6 +41,7 @@
         <button 
             type="submit" 
             class="btn btn-primary"
+            data-dismiss="modal" (click)="onSignin()"
             [disabled]="!myForm.valid">Sign In</button>
       </div>
     </div>

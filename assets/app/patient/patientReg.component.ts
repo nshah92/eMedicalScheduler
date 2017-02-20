@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../profile/user.model';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { dbService } from '../service/db.service';
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'es-patientreg',
@@ -10,9 +11,7 @@ import { dbService } from '../service/db.service';
 
 export class PatientRegComponent implements OnInit {
 
-    //myForm: FormGroup;
-
-    constructor(private dbService: dbService) { }
+    constructor(private dbService: dbService, private router: Router) { }
 
     registerPatient(form: NgForm) {
         const user = new User(form.value.email, 
@@ -26,10 +25,13 @@ export class PatientRegComponent implements OnInit {
 
         this.dbService.registerUser(user)
             .subscribe(
-            data => console.log(data),
-            error => console.error(error)
+                data => console.log(data),
+                error => console.error(error)
             );
+            this.router.navigateByUrl('/');
         form.resetForm();
+
+
     }
     
 

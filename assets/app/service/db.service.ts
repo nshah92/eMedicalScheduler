@@ -2,12 +2,12 @@ import { Http, Response, Headers } from "@angular/http";
 import { Injectable, EventEmitter } from "@angular/core";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
-
 import { User } from '../profile/user.model'
 
 @Injectable()
 export class dbService {
     private user: User[] = [];
+    clickNo: number = 0;
     constructor(private http: Http) {}
 
     registerUser(user: User) {
@@ -18,12 +18,12 @@ export class dbService {
             .map((response: Response) => {
                 const result = response.json();
                 const user = new User(result.obj.email,
-                                        result.obj.password, 
+                                        result.obj.password,
                                         result.obj.firstname,
-                                        result.obj.lastname, 
-                                        result.obj.dob, 
-                                        result.obj.selectgender, 
-                                        result.obj.selectinsurance, 
+                                        result.obj.lastname,
+                                        result.obj.dob,
+                                        result.obj.selectgender,
+                                        result.obj.selectinsurance,
                                         result.obj.allergies);
                 this.user.push(user);
                 return user;

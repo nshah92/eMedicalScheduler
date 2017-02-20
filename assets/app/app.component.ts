@@ -9,14 +9,16 @@ import { dbService } from './service/db.service';
 export class AppComponent {
     pageTitle: string = "e-Medical Scheduler";
 
-    constructor(private service: dbService, private _router: Router){}
+    constructor(private dbService: dbService, private _router: Router){}
 
     isLoggedIn() {
-        return this.service.isLoggedIn();
+        return this.dbService.isLoggedIn();
     }
 
     logout() {
-        this.service.logout();
+        this.dbService.clickNo = 0;
+        this.dbService.logout();
+        console.log('click count is ' + this.dbService.clickNo);
     }
 
     regPatient() : void {
