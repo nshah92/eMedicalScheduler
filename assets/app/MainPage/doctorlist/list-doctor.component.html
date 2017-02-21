@@ -1,63 +1,20 @@
-<div style="width:30%;float: left;margin-left: 10px; overflow-y: auto; height:380px;">
-    <!--doc 1-->
-    <div id="collapseTabs1" class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse1">Dr. Andrew</a>
-                </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse">
-                <div class="panel-body">
-                    Speciality<br> Clinic Name<br> Address
-                    <br> Contact <br> Hours
-                    <br>
-                </div>
-                <div class="panel-footer">
-                    <input type="button" class="btn btn-primary" value="Book an Appointment" (click)='onBook()'>
-                </div>
-            </div>
+<!--doc 1-->
+<div id="collapseTabs1" class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#{{doc.doclastname}}">{{doc.docfirstname}}</a>
+            </h4>
         </div>
-    </div>
-
-    <!--doc 2-->
-    <div id="collapseTabs2" class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse2">Dr. Smith</a>
-                </h4>
+        <div id="{{doc.doclastname}}" class="panel-collapse collapse">
+            <div class="panel-body">
+                {{doc.docspeciality}}<br> {{doc.docclinicname}}
+                <br> {{doc.docaddress}}
+                <br> {{doc.doccity}} <br> {{doc.docwebsite}}
+                <br>
             </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">
-                    Speciality<br> Clinic Name<br> Address
-                    <br> Contact <br> Hours
-                    <br>
-                </div>
-                <div class="panel-footer">
-                    <input type="button" class="btn btn-primary" value="Book an Appointment">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--doc 3-->
-    <div id="collapseTabs3" class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse3">Dr. John</a>
-                </h4>
-            </div>
-            <div id="collapse3" class="panel-collapse collapse">
-                <div class="panel-body">
-                    Speciality<br> Clinic Name<br> Address
-                    <br> Contact <br> Hours
-                    <br>
-                </div>
-                <div class="panel-footer">
-                    <input type="button" class="btn btn-primary" value="Book an Appointment">
-                </div>
+            <div class="panel-footer">
+                <input type="button" class="btn btn-primary" value="Book an Appointment" (click)='onBook()'>
             </div>
         </div>
     </div>

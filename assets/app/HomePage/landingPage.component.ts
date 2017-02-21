@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Injectable } from "@angular/core";
-import { Router, ActivatedRoute, } from '@angular/router';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+
+import { LandingPage } from '../profile/landingpage.model';
 
 @Component({
     selector: 'es-landing',
@@ -9,10 +12,21 @@ import { Router, ActivatedRoute, } from '@angular/router';
 
 export class LandingPageComponent {
 
+    
+
     constructor(private _route: ActivatedRoute, private _router: Router){}
 
-    onFind(): void{
-        this._router.navigate(['/physicianlocator']);
+    onFind(form: NgForm): void{
+        
+        const lp = new LandingPage(form.value.lpspeciality, form.value.lplocation);
+        let navigationExtras: NavigationExtras = {
+            queryParams:{
+                "speciality": lp.lpspeciality,
+                "location": lp.lplocation
+            }
+        };
+
+        this._router.navigate(['/physicianlocator'], navigationExtras);
     }
 
 }
