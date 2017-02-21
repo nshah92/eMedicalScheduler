@@ -19,6 +19,7 @@ export class AppComponent {
         this.dbService.clickNo = 0;
         this.dbService.logout();
         console.log('click count is ' + this.dbService.clickNo);
+        this._router.navigate(['/']);
     }
 
     regPatient() : void {
