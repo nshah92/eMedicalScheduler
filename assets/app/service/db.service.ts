@@ -8,6 +8,7 @@ import { User } from '../profile/user.model'
 @Injectable()
 export class dbService {
     private user: User[] = [];
+    clickNo: number = 0;
     constructor(private http: Http) {}
 
     registerUser(user: User) {

@@ -6,7 +6,8 @@ import { User } from '../profile/user.model';
 
 @Component({
     selector: 'es-modal',
-    templateUrl: 'modal.component.html'
+    templateUrl: 'modal.component.html',
+    styles: ['errorr { color: red; }']
 })
 
 export class ModalComponent {
@@ -27,8 +28,7 @@ export class ModalComponent {
                 error => console.log(error)
             );
 
-        console.log("Email: ", this.myForm.value.email);
-        console.log("Password: ", this.myForm.value.password);
+        this.dbService.clickNo++;
         this.myForm.reset();
     }
 
