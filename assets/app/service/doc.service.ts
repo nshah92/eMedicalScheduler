@@ -68,10 +68,10 @@ export class DocService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
-    getlongitude(){
+    getMarkerPosition(address: string, postalcode: string, city:string){
        const headers = new Headers({'Content-Type': 'application/html'});
-       console.log("Here in Logitude");
-       return this.http.get('http://maps.googleapis.com/maps/api/geocode/json?address=645%20Porcupine%20Blvd')
+       
+       return this.http.get('http://maps.googleapis.com/maps/api/geocode/json?address=' + address + city + postalcode)
            .map((response: Response) => response.json())
            .catch((error: Response) => Observable.throw(error.json()));
    }

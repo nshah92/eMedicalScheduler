@@ -23,7 +23,8 @@ export class MainPageComponent
     private sub: any;
     location: string;
     speciality: string;
-    
+    locs:any[] = [];
+   
 
     constructor(private _route: ActivatedRoute, private _router: Router, private docService: DocService){
                
@@ -40,40 +41,59 @@ export class MainPageComponent
     onBook(): void{
         this._router.navigate(['/doctoravailability']);
     }
+
+    getLatLng(){
+        for (let doc of this.docs) {
+            this.docService.getMarkerPosition(doc.docaddress, doc.docpostalcode, doc.doccity)
+            .subscribe(
+                data => {
+                    this.populateMarkers(JSON.stringify(data.results[0].geometry.location.lat), 
+                    JSON.stringify(data.results[0].geometry.location.lng));
+                },
+                error => console.log(error)
+            )
+        }
+        
+        console.log("getLatLng", this.docs);
+    }
+
+    populateMarkers(lat:String, lng:String){
+        
+        this.locs.push(+lat);
+        this.locs.push(+lng);
+
+        var mapProp = {
+            center: new google.maps.LatLng(+lat, +lng),
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        
+        var icon = {
+            url: "https://cdn3.iconfinder.com/data/icons/map-markers-1/512/medical-512.png", // url
+            scaledSize: new google.maps.Size(35, 35), // scaled size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
+
+        for(let i = 0; i < this.locs.length; i = i+2){
+            
+            new google.maps.Marker({
+                position: {lat: this.locs[i], lng: this.locs[i+1]},
+                map: map,
+                icon: icon
+            });
+        }
+    }
     
     ngOnInit() {
         
         this.docService.getDocLocation(this.lp)
             .subscribe(
-            (docs: Doc[]) => {
+            docs => {
                 this.docs = docs;
-                console.log(docs);
-                for (let doc of this.docs) {
-                    console.log("Subscribe", doc.docaddress);
-                }
+                this.getLatLng();
             }
-            );
-        
-        console.log("After subscribe");
-        
-        var mapProp = {
-            center: new google.maps.LatLng(48.421481, -89.261897),
-            zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var myLatLng = {lat: 48.421481, lng: -89.261897};
-        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        // var marker = new google.maps.Marker({
-        //   position: myLatLng,
-        //   map: map,
-        //   title: 'Hello World!'
-        // });
-
-        var image = 'app/assets/images/marker.png'
-        var beachMarker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          icon: image
-        });
+            );        
     }
 }

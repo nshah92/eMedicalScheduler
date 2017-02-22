@@ -3,15 +3,17 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" href="#{{doc.doclastname}}">{{doc.docfirstname}}</a>
+                <a data-toggle="collapse" href="#{{doc.doclastname}}">{{doc.docfirstname}} {{doc.doclastname}}</a>
             </h4>
         </div>
         <div id="{{doc.doclastname}}" class="panel-collapse collapse">
             <div class="panel-body">
-                {{doc.docspeciality}}<br> {{doc.docclinicname}}
-                <br> {{doc.docaddress}}
-                <br> {{doc.doccity}} <br> {{doc.docwebsite}}
-                <br>
+                {{doc.docspeciality}}<br> 
+                {{doc.docclinicname}}<br> 
+                {{doc.docaddress}}<br>
+                {{doc.doccity}}, {{doc. docprovince}} {{doc.docpostalcode}}<br> 
+                {{doc.docemail}}<br> 
+                {{doc.docwebsite}}<br>
             </div>
             <div class="panel-footer">
                 <input type="button" class="btn btn-primary" value="Book an Appointment" (click)='onBook()'>

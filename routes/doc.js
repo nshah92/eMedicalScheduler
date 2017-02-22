@@ -43,8 +43,10 @@ router.get('/', function (req, res, next) {
                     error: err
                 });
             }
+            var token = jwt.sign({docs: 'somevalue'}, '$ecret', {expiresIn: 7200});
             res.status(200).json({
                 message: 'Success',
+                token: token,
                 obj: docs
             });
         });
