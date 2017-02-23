@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Injectable } from "@angular/core";
 import { Router, ActivatedRoute, } from '@angular/router';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { DocService } from '../service/doc.service';
 import { Doc } from '../profile/doc.model';
@@ -36,6 +37,20 @@ export class MainPageComponent
        });
 
        
+    }
+
+    onFind(form: NgForm): void{
+
+        this.locs = [];
+        this.lp = new LandingPage(form.value.mpspeciality, form.value.mplocation);
+
+        this.docService.getDocLocation(this.lp)
+                .subscribe(
+                docs => {
+                    this.docs = docs;
+                    this.getLatLng();
+                }
+                ); 
     }
 
     onBook(): void{
