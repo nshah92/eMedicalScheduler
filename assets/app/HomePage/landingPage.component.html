@@ -7,15 +7,18 @@
 </div>
 
 <div class="row text-center">
-    <h5>I am looking for a
-        <select>
-            <option value="Physician">Physician</option>
-            <option value="FamilyDcotor">Family Doctor</option>
-            <option value="ENT">ENT</option>
-        </select> near
-        <input type="text" name="LandingPageLocation">
-        <input type="button" class="btn btn-primary" value="Find" (click)='onFind()'>
-    </h5>    
+    <form class="form-horizontal" (ngSubmit)="onFind(f)" #f="ngForm">
+        <h5>I am looking for a
+            <select id="lpspeciality" name="lpspeciality" 
+              [ngModel]="lpspeciality" required>
+                <option value="Physician">Physician</option>
+                <option value="Family Doctor">Family Doctor</option>
+                <option value="ENT">ENT</option>
+            </select> near
+            <input type="text" id="lplocation" name="lplocation" [ngModel]="lplocation" required>
+            <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Find</button>
+        </h5>
+    </form>    
     <hr>    
 </div>
 <div class="row text-center">
