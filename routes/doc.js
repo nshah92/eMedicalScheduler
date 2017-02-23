@@ -35,7 +35,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/', function (req, res, next) {
-    Doc.find({doccity: req.param('lplocation')})
+    Doc.find({doccity: req.param('lplocation'), docspeciality: req.param('lpspeciality')})
         .exec(function (err, docs) {
             if (err) {
                 return res.status(500).json({

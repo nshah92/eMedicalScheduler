@@ -42,6 +42,7 @@ export class DocService {
         let params = new URLSearchParams();
         params.set('lpspeciality', lp.lpspeciality);
         params.set('lplocation', lp.lplocation);
+        
         return this.http.get('http://localhost:3000/docreg', {search: params})
             .map((response: Response) => {
                 const docs = response.json().obj;
