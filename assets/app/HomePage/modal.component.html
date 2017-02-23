@@ -29,7 +29,7 @@
     </div>
 
     <!--error-->
-    <div class="form-group row" *ngIf="!this.dbService.isLoggedIn() && this.dbService.clickNo > 0">
+    <div class="form-group row" *ngIf="this.statusCode != 200">
       <div class="col-sm-5 col-sm-offset-1">
         <label for="errormessage" class="errorr"><em>Invalid login credentials</em></label>
       </div>

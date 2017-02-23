@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { dbService } from './service/db.service';
+import { User } from './profile/user.model';
 
 @Component({
     selector: 'my-app',
@@ -8,6 +9,7 @@ import { dbService } from './service/db.service';
 })
 export class AppComponent {
     pageTitle: string = "e-Medical Scheduler";
+    @Input() user: User;
 
     constructor(private dbService: dbService, private _router: Router){}
 
@@ -24,5 +26,5 @@ export class AppComponent {
 
     regPatient() : void {
         this._router.navigate(['/patient-registration']);
-    }
+    }  
 }

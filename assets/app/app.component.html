@@ -10,7 +10,8 @@
                      <ul class="nav navbar-nav"  *ngIf="isLoggedIn()">
                         <li routerLinkActive="active" ><a [routerLink]="['/']">Manage Apoints</a></li>
                         <li routerLinkActive="active" ><a [routerLink]="['/']">Make Appoints</a></li>
-                        <li routerLinkActive="active" ><a [routerLink]="['/patient-registration']">Edit Profile</a></li>
+                        <li routerLinkActive="active" ><a [routerLink]="['/patient-registration']">
+                                    Edit Profile</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li *ngIf="!isLoggedIn()"><a [routerLink]="['/patient-registration']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -32,10 +33,6 @@
                     </div>
                     <div class="modal-body">
                         <es-modal></es-modal>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="regPatient()">
-                            Sign Up</button>
                     </div>
                 </div>
             </div>

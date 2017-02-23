@@ -9,8 +9,7 @@ import { dbService } from '../service/db.service';
 })
 
 export class PatientRegComponent implements OnInit {
-
-    //myForm: FormGroup;
+    user: User;
 
     constructor(private dbService: dbService) { }
 
@@ -32,11 +31,8 @@ export class PatientRegComponent implements OnInit {
         form.resetForm();
     }
     
-
     ngOnInit() {
-       /* 
-            Perform Init Functions
-       */
+
     }
 
 }

@@ -7,12 +7,17 @@ import { User } from '../profile/user.model';
 @Component({
     selector: 'es-modal',
     templateUrl: 'modal.component.html',
-    styles: ['errorr { color: red; }']
+    styles: [`
+        .errorr {
+            color: red;
+        }
+    `]
 })
 
 export class ModalComponent {
     
     myForm: FormGroup;
+    statusCode: number = 200;
 
     constructor(private dbService: dbService, private router: Router) {}
 
@@ -23,9 +28,13 @@ export class ModalComponent {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
+                    this.statusCode = data.stat;
                     this.router.navigateByUrl('/');
                 },
-                error => console.log(error)
+                error => {
+                    this.statusCode = error.stat;
+                    console.log(error)
+                }
             );
 
         this.dbService.clickNo++;
