@@ -34,4 +34,22 @@ router.post('/', function (req, res, next) {
     });
 });
 
+router.get('/', function (req, res, next) {
+    Doc.find({doccity: req.param('lplocation')})
+        .exec(function (err, docs) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            var token = jwt.sign({docs: 'somevalue'}, '$ecret', {expiresIn: 7200});
+            res.status(200).json({
+                message: 'Success',
+                token: token,
+                obj: docs
+            });
+        });
+});
+
 module.exports = router;
