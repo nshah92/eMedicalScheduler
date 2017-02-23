@@ -5,6 +5,8 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 import { LandingPage } from '../profile/landingpage.model';
 
+declare var google: any;
+
 @Component({
     selector: 'es-landing',
     templateUrl: 'landingPage.component.html'
