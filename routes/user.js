@@ -58,7 +58,14 @@ router.post('/signin', function(req, res, next) {
             message: 'Successfully logged in',
             token: token,
             userId: user._id,
-            stat: res.statusCode
+            stat: res.statusCode,
+            email: user.email,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            dob: user.dob,
+            gender: user.gender,
+            insurance: user.insuranceprovider,
+            allergies: user.allergies
         });
     });
 });

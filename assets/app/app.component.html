@@ -8,8 +8,7 @@
                         <a class="navbar-brand" [routerLink]="['/']">{{pageTitle}}</a>
                     </div>
                      <ul class="nav navbar-nav"  *ngIf="isLoggedIn()">
-                        <li routerLinkActive="active" ><a [routerLink]="['/']">Manage Apoints</a></li>
-                        <li routerLinkActive="active" ><a [routerLink]="['/']">Make Appoints</a></li>
+                        <li routerLinkActive="active" ><a [routerLink]="['/home']">Manage Apoints</a></li>
                         <li routerLinkActive="active" ><a [routerLink]="['/patient-registration']">
                                     Edit Profile</a></li>
                     </ul>

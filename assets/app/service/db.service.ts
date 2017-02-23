@@ -1,4 +1,4 @@
-import { Http, Response, Headers } from "@angular/http";
+import { Http, Response, Headers, URLSearchParams } from "@angular/http";
 import { Injectable } from "@angular/core";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
@@ -8,7 +8,6 @@ import { User } from '../profile/user.model'
 @Injectable()
 export class dbService {
     private user: User[] = [];
-    clickNo: number = 0;
 
     constructor(private http: Http) {}
 

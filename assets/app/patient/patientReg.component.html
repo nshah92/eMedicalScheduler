@@ -1,7 +1,7 @@
 <form class="form-horizontal" (ngSubmit)="registerPatient(f)" #f="ngForm">
     
     <!--Email-->
-    <div class="form-group">
+    <div class="form-group" *ngIf="!this.dbService.isLoggedIn()">
         <label class="control-label col-md-4" for="email">Email:</label>
         <div class="col-md-6">
             <input type="email" [ngModel]="user?.email" name="email" class="form-control" id="email" 
@@ -13,7 +13,7 @@
     </div>
     
     <!--Password-->
-    <div class="form-group">
+    <div class="form-group" *ngIf="!this.dbService.isLoggedIn()">
         <label class="control-label col-md-4" for="password">Password:</label>
         <div class="col-md-6">
             <input type="password" [ngModel]="user?.password" name="password" class="form-control" id="password" 
@@ -25,7 +25,7 @@
     </div>
     
     <!--RePassword-->
-    <div class="form-group">
+    <div class="form-group" *ngIf="!this.dbService.isLoggedIn()">
         <label class="control-label col-md-4" for="repassword">Repeat Password:</label>
         <div class="col-md-6">
             <input type="password" [ngModel]="user?.repassword" name="repassword" class="form-control" id="repassword"
@@ -64,7 +64,7 @@
     <div class="form-group">
         <label class="control-label col-md-4" for="selectgender">Select Gender:</label>
         <div class="col-md-6">
-            <select class="form-control" id="selectgender" name="selectgender" [ngModel]="user?.selectgender" class="form-control" required>
+            <select class="form-control" id="selectgender" name="selectgender" [ngModel]="user?.gender" class="form-control" required>
                 <option>Male</option>
                 <option>Female</option>
                 <option>Others</option>
@@ -76,7 +76,7 @@
     <div class="form-group">
         <label class="control-label col-md-4" for="selectinsurance">Select Insurance Provider:</label>
         <div class="col-md-6">
-            <select class="form-control" id="selectinsurance" name="selectinsurance" [ngModel]="user?.selectinsurance" class="form-control" required>
+            <select class="form-control" id="selectinsurance" name="selectinsurance" [ngModel]="user?.insuranceprovider" class="form-control" required>
                 <option>Insurance Company 1</option>
                 <option>Insurance Company 2</option>
                 <option>Insurance Company 3</option>
@@ -90,7 +90,7 @@
     <div class="form-group">
         <label class="control-label col-md-4" for="allergies">Allergies:</label>
         <div class="col-md-6">
-            <textarea class="form-control" rows="5" name="allergies" id="allergies" placeholder="Seperate with comma" 
+            <textarea class="form-control" rows="5" name="allergies" id="allergies" placeholder="Seperate by commas" 
             [ngModel]="user?.allergies"  class="form-control"></textarea>
         </div>
     </div>
@@ -98,7 +98,8 @@
     <!--Sign Up Button-->
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
-            <button class="btn btn-default" type="submit" [disabled]="!f.valid">Sign Up</button>
+            <button class="btn btn-default" type="submit" [disabled]="!f.valid">
+                {{this.dbService.isLoggedIn() ? 'Update' : 'Sign Up' }}</button>
         </div>
-    </div>
+    </div>  
 </form>

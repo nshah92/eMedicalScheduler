@@ -14,7 +14,9 @@ export class PatientRegComponent implements OnInit {
     constructor(private dbService: dbService) { }
 
     registerPatient(form: NgForm) {
-        const user = new User(form.value.email, 
+
+        if (!this.dbService.isLoggedIn()) {
+            const user = new User(form.value.email, 
                                 form.value.password, 
                                 form.value.firstname,
                                 form.value.lastname, 
@@ -23,16 +25,32 @@ export class PatientRegComponent implements OnInit {
                                 form.value.selectinsurance, 
                                 form.value.allergies);
 
-        this.dbService.registerUser(user)
-            .subscribe(
-            data => console.log(data),
-            error => console.error(error)
+            this.dbService.registerUser(user)
+                .subscribe(
+                    data => console.log(data),
+                    error => console.error(error)
             );
-        form.resetForm();
+            form.resetForm();
+        }else{
+            //Update
+        }
     }
     
     ngOnInit() {
 
-    }
+        if (this.dbService.isLoggedIn()) {
+            this.user = new User(
+                localStorage.getItem('email'), 
+                "", 
+                localStorage.getItem('firstname'),
+                localStorage.getItem('lastname'),
+                localStorage.getItem('dob'),
+                localStorage.getItem('gender'),
+                localStorage.getItem('insurance'),
+                localStorage.getItem('allergies')
+            )
 
+            console.log (this.user);
+        }
+    }
 }
