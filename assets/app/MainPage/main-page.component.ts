@@ -25,6 +25,7 @@ export class MainPageComponent
     location: string;
     speciality: string;
     locs:any[] = [];
+    docFlag: boolean = true;
    
 
     constructor(private _route: ActivatedRoute, private _router: Router, private docService: DocService){
@@ -43,7 +44,7 @@ export class MainPageComponent
 
         this.locs = [];
         this.lp = new LandingPage(form.value.mpspeciality, form.value.mplocation);
-
+        this.location = form.value.mplocation;
         this.docService.getDocLocation(this.lp)
                 .subscribe(
                 docs => {
@@ -58,18 +59,36 @@ export class MainPageComponent
     }
 
     getLatLng(){
-        for (let doc of this.docs) {
-            this.docService.getMarkerPosition(doc.docaddress, doc.docpostalcode, doc.doccity)
-            .subscribe(
-                data => {
-                    this.populateMarkers(JSON.stringify(data.results[0].geometry.location.lat), 
-                    JSON.stringify(data.results[0].geometry.location.lng));
-                },
-                error => console.log(error)
-            )
-        }
         
-        console.log("getLatLng", this.docs);
+        if(this.docs.length !== 0){
+            console.log("getLatLng: docs in the location", this.location);
+            this.docFlag = true;
+
+            for (let doc of this.docs) {
+                this.docService.getMarkerPosition(doc.docaddress, doc.docpostalcode, doc.doccity)
+                .subscribe(
+                    data => {
+                        this.populateMarkers(JSON.stringify(data.results[0].geometry.location.lat), 
+                        JSON.stringify(data.results[0].geometry.location.lng));
+                    },
+                    error => console.log(error)
+                )
+            }
+        } else {
+            console.log("getLatLng: No docs in the location: ", this.location);
+            this.docFlag = false;
+            
+            this.docService.getMarkerPosition("", "", this.location)
+                .subscribe(
+                    data => {
+                        this.populateMarkers(JSON.stringify(data.results[0].geometry.location.lat), 
+                        JSON.stringify(data.results[0].geometry.location.lng));
+                    },
+                    error => console.log(error)
+                )
+        }
+              
+        console.log("getLatLng: ", this.docs);
     }
 
     populateMarkers(lat:String, lng:String){
@@ -84,20 +103,22 @@ export class MainPageComponent
         };
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         
-        var icon = {
-            url: "https://cdn3.iconfinder.com/data/icons/map-markers-1/512/medical-512.png", // url
-            scaledSize: new google.maps.Size(35, 35), // scaled size
-            origin: new google.maps.Point(0,0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-        };
+        if(this.docFlag == true){
+            var icon = {
+                url: "https://cdn3.iconfinder.com/data/icons/map-markers-1/512/medical-512.png", // url
+                scaledSize: new google.maps.Size(35, 35), // scaled size
+                origin: new google.maps.Point(0,0), // origin
+                anchor: new google.maps.Point(0, 0) // anchor
+            };
 
-        for(let i = 0; i < this.locs.length; i = i+2){
-            
-            new google.maps.Marker({
-                position: {lat: this.locs[i], lng: this.locs[i+1]},
-                map: map,
-                icon: icon
-            });
+            for(let i = 0; i < this.locs.length; i = i+2){
+                
+                new google.maps.Marker({
+                    position: {lat: this.locs[i], lng: this.locs[i+1]},
+                    map: map,
+                    icon: icon
+                });
+            }
         }
     }
     
