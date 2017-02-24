@@ -17,7 +17,7 @@ export class LandingPageComponent implements OnInit {
     constructor(private _route: ActivatedRoute, private _router: Router){}
 
     onFind(form: NgForm): void{
-        console.log("On Find", this.lplocation);
+        
         const lp = new LandingPage(form.value.lpspeciality, this.lplocation);
         let navigationExtras: NavigationExtras = {
             queryParams:{
@@ -32,8 +32,6 @@ export class LandingPageComponent implements OnInit {
     populatelocation(field:string)
     {
          this.lplocation=field;
-        console.log("In populatelocation");
-        console.log("before populatelocation",this.lplocation);
     }
 
     ngOnInit() {
@@ -54,7 +52,6 @@ export class LandingPageComponent implements OnInit {
             let lng = place.geometry.location.lng();
             let address = place.formatted_address;
             var fields = address.split(',');
-            console.log("before populatelocation");
             this.populatelocation(fields[0]);
             
         });
