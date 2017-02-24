@@ -25,12 +25,9 @@ export class MainPageComponent
     location: string;
     speciality: string;
     locs:any[] = [];
-<<<<<<< HEAD
     mplocation:string;
-=======
     docFlag: boolean = true;
    
->>>>>>> b29f7f18f0b43e5fcf2342f42df962a9f6bcade2
 
     constructor(private _route: ActivatedRoute, private _router: Router, private docService: DocService){
                
@@ -42,21 +39,6 @@ export class MainPageComponent
        });
     }
 
-    // onFind(form: NgForm): void{
-
-<<<<<<< HEAD
-    //     this.locs = [];
-    //     this.lp = new LandingPage(form.value.mpspeciality, form.value.mplocation);
-
-    //     this.docService.getDocLocation(this.lp)
-    //             .subscribe(
-    //             docs => {
-    //                 this.docs = docs;
-    //                 this.getLatLng();
-    //             }
-    //             ); 
-    // }
-
     onFind(form: NgForm): void{
         const lp = new LandingPage(form.value.mpspeciality, this.mplocation);
         let navigationExtras: NavigationExtras = {
@@ -65,24 +47,18 @@ export class MainPageComponent
                 "location": lp.lplocation
             }
         };
-        console.log("Main find",lp.lpspeciality);
-        console.log("Main find",lp.lplocation);
 
         this.docService.getDocLocation(lp)
-=======
         this.locs = [];
         this.lp = new LandingPage(form.value.mpspeciality, form.value.mplocation);
         this.location = form.value.mplocation;
         this.docService.getDocLocation(this.lp)
->>>>>>> b29f7f18f0b43e5fcf2342f42df962a9f6bcade2
                 .subscribe(
                 docs => {
                     this.docs = docs;
                     this.getLatLng();
                 }
                 ); 
-
-       // this._router.navigate(['/physicianlocator'], navigationExtras);
     }
 
     onBook(): void{
@@ -155,8 +131,6 @@ export class MainPageComponent
     populatelocation(field:string)
     {
         this.mplocation=field;
-        console.log("In populatelocation");
-        console.log("main page before populatelocation",this.mplocation);
     }
     
     ngOnInit() {
@@ -185,9 +159,7 @@ export class MainPageComponent
             let lng = place.geometry.location.lng();
             let address = place.formatted_address;
             var fields = address.split(',');
-            console.log("Main before populatelocation");
             this.populatelocation(fields[0]);
-            
         });      
     }
 }
