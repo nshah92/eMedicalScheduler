@@ -40,6 +40,16 @@ export class dbService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    updateUser(user: User) {
+        const body = JSON.stringify(user);
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.patch('http://localhost:3000/userreg/' + user.email, body, {headers: headers})
+            .map((response: Response) => {
+                return response.json();
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
     logout() {
         localStorage.clear();
     }
