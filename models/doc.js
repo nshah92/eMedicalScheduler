@@ -8,7 +8,7 @@ var schema = new Schema({
     docemail: {type: String, required: true, unique: true},
     docpassword: {type: String, required: true},
     docspeciality: {type: String, required: true},
-    doclicense: {type: String, required: true},
+    doclicense: {type: String, required: true, unique: true},
     docclinicname: {type: String, required: true},
     docaddress: {type: String, required: true},
     doccity: {type: String, required: true},

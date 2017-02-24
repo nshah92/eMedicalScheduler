@@ -71,9 +71,17 @@ export class DocService {
 
     getMarkerPosition(address: string, postalcode: string, city:string){
        const headers = new Headers({'Content-Type': 'application/html'});
-       
-       return this.http.get('http://maps.googleapis.com/maps/api/geocode/json?address=' + address + city + postalcode)
-           .map((response: Response) => response.json())
-           .catch((error: Response) => Observable.throw(error.json()));
+
+       if(address.length == 0 && postalcode.length ==0){
+           
+           return this.http.get('http://maps.googleapis.com/maps/api/geocode/json?address=' + city)
+                .map((response: Response) => response.json())
+                .catch((error: Response) => Observable.throw(error.json()));
+       } else{
+            
+            return this.http.get('http://maps.googleapis.com/maps/api/geocode/json?address=' + address + city + postalcode)
+                .map((response: Response) => response.json())
+                .catch((error: Response) => Observable.throw(error.json()));
+       }
    }
 }

@@ -1,6 +1,6 @@
 export class User {
     email: string;
-    password: string;    
+    password?: string;    
     allergies?: string;
     firstname?: string;
     lastname?: string;
@@ -9,7 +9,7 @@ export class User {
     insuranceprovider?: string;
     
     constructor(email: string, 
-                password: string, 
+                password?: string, 
                 firstname?: string,
                 lastname?: string, 
                 dob?: string, 

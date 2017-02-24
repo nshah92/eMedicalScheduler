@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+
 import { dbService } from './service/db.service';
 import { User } from './profile/user.model';
 
@@ -7,9 +9,10 @@ import { User } from './profile/user.model';
     selector: 'my-app',
     templateUrl: './app.component.html',
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
     pageTitle: string = "e-Medical Scheduler";
-    @Input() user: User;
+    myForm: FormGroup;
 
     constructor(private dbService: dbService, private _router: Router){}
 
@@ -18,13 +21,15 @@ export class AppComponent {
     }
 
     logout() {
-        this.dbService.clickNo = 0;
         this.dbService.logout();
-        console.log('click count is ' + this.dbService.clickNo);
         this._router.navigate(['/']);
     }
 
     regPatient() : void {
         this._router.navigate(['/patient-registration']);
     }  
+
+    ngOnInit() {
+
+    }
 }

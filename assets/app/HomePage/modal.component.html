@@ -1,6 +1,6 @@
 
 <div class="container">
-  <form [formGroup]="myForm" (ngSubmit)="onSignin()">
+  <form [formGroup]="myForm">
 
     <!--Email-->
     <div class="form-group row">
@@ -41,7 +41,9 @@
         <button 
             type="submit" 
             class="btn btn-primary"
-            [disabled]="!myForm.valid">Sign In</button>
+            [disabled]="!myForm.valid"
+            (click)="onSignin()"
+            data-dismiss="modal">Sign In</button>
       </div>
     </div>
 
