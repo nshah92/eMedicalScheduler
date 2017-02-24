@@ -11,7 +11,7 @@ var docRoutes = require('./routes/doc');
 var mongoose = require('mongoose');
 
 var app = express();
-mongoose.connect('10.100.24.142:27017/emed');
+mongoose.connect('localhost:27017/emed');
 
 
 // view engine setup
