@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Injectable } from "@angular/core";
-import { Router, ActivatedRoute, } from '@angular/router';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Doc } from '../../profile/doc.model';
 
 @Component({
@@ -15,8 +16,12 @@ export class ListDoctorComponent {
        //console.log("ListDoctorComponent",this.doc.docaddress);
     }
 
-    onFind(): void{
+    /*onFind(): void{
         this._router.navigate(['/physicianlocator']);
+    }*/
+
+    onBook(form: NgForm): void{
+        console.log("Navigate to Booking Page");
     }
 
 }

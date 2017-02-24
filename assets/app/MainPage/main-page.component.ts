@@ -40,17 +40,9 @@ export class MainPageComponent
     }
 
     onFind(form: NgForm): void{
-        const lp = new LandingPage(form.value.mpspeciality, this.mplocation);
-        let navigationExtras: NavigationExtras = {
-            queryParams:{
-                "speciality": lp.lpspeciality,
-                "location": lp.lplocation
-            }
-        };
-
-        this.docService.getDocLocation(lp)
+       
         this.locs = [];
-        this.lp = new LandingPage(form.value.mpspeciality, form.value.mplocation);
+        this.lp = new LandingPage(form.value.mpspeciality, this.mplocation);
         this.location = form.value.mplocation;
         this.docService.getDocLocation(this.lp)
                 .subscribe(
