@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Injectable } from "@angular/core";
-import { Router, ActivatedRoute, } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { DocService } from '../service/doc.service';
@@ -25,7 +25,7 @@ export class MainPageComponent
     location: string;
     speciality: string;
     locs:any[] = [];
-   
+    mplocation:string;
 
     constructor(private _route: ActivatedRoute, private _router: Router, private docService: DocService){
                
@@ -35,22 +35,42 @@ export class MainPageComponent
 
            this.lp = new LandingPage(this.speciality, this.location);
        });
-
-       
     }
 
+    // onFind(form: NgForm): void{
+
+    //     this.locs = [];
+    //     this.lp = new LandingPage(form.value.mpspeciality, form.value.mplocation);
+
+    //     this.docService.getDocLocation(this.lp)
+    //             .subscribe(
+    //             docs => {
+    //                 this.docs = docs;
+    //                 this.getLatLng();
+    //             }
+    //             ); 
+    // }
+
     onFind(form: NgForm): void{
+        const lp = new LandingPage(form.value.mpspeciality, this.mplocation);
+        let navigationExtras: NavigationExtras = {
+            queryParams:{
+                "speciality": lp.lpspeciality,
+                "location": lp.lplocation
+            }
+        };
+        console.log("Main find",lp.lpspeciality);
+        console.log("Main find",lp.lplocation);
 
-        this.locs = [];
-        this.lp = new LandingPage(form.value.mpspeciality, form.value.mplocation);
-
-        this.docService.getDocLocation(this.lp)
+        this.docService.getDocLocation(lp)
                 .subscribe(
                 docs => {
                     this.docs = docs;
                     this.getLatLng();
                 }
                 ); 
+
+       // this._router.navigate(['/physicianlocator'], navigationExtras);
     }
 
     onBook(): void{
@@ -100,6 +120,12 @@ export class MainPageComponent
             });
         }
     }
+    populatelocation(field:string)
+    {
+        this.mplocation=field;
+        console.log("In populatelocation");
+        console.log("main page before populatelocation",this.mplocation);
+    }
     
     ngOnInit() {
         
@@ -109,6 +135,27 @@ export class MainPageComponent
                 this.docs = docs;
                 this.getLatLng();
             }
-            );        
+            );
+        // Initialize the search box and autocomplete
+        let searchBox: any = document.getElementById('mplocation');
+        let options = {
+            types: [
+                // return only geocoding results, rather than business results.
+                'geocode',
+            ]
+        };
+        var autocomplete = new google.maps.places.Autocomplete(searchBox, options);
+
+        // Add listener to the place changed event
+        autocomplete.addListener('place_changed', () => {
+            let place = autocomplete.getPlace();
+            let lat = place.geometry.location.lat();
+            let lng = place.geometry.location.lng();
+            let address = place.formatted_address;
+            var fields = address.split(',');
+            console.log("Main before populatelocation");
+            this.populatelocation(fields[0]);
+            
+        });      
     }
 }

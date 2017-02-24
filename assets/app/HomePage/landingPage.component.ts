@@ -5,6 +5,8 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 import { LandingPage } from '../profile/landingpage.model';
 
+declare var google: any;
+
 @Component({
     selector: 'es-landing',
     templateUrl: 'landingPage.component.html'
@@ -12,12 +14,11 @@ import { LandingPage } from '../profile/landingpage.model';
 
 export class LandingPageComponent implements OnInit {
     lplocation:string;
-
     constructor(private _route: ActivatedRoute, private _router: Router){}
-    
 
     onFind(form: NgForm): void{
-        const lp = new LandingPage(form.value.lpspeciality, form.value.lplocation);
+        console.log("On Find", this.lplocation);
+        const lp = new LandingPage(form.value.lpspeciality, this.lplocation);
         let navigationExtras: NavigationExtras = {
             queryParams:{
                 "speciality": lp.lpspeciality,
@@ -28,8 +29,14 @@ export class LandingPageComponent implements OnInit {
         this._router.navigate(['/physicianlocator'], navigationExtras);
     }
 
-    ngOnInit() {
+    populatelocation(field:string)
+    {
+         this.lplocation=field;
+        console.log("In populatelocation");
+        console.log("before populatelocation",this.lplocation);
+    }
 
+    ngOnInit() {
         // Initialize the search box and autocomplete
         let searchBox: any = document.getElementById('lplocation');
         let options = {
@@ -47,8 +54,9 @@ export class LandingPageComponent implements OnInit {
             let lng = place.geometry.location.lng();
             let address = place.formatted_address;
             var fields = address.split(',');
-            this.lplocation=fields[0];
-            // this.placeChanged(lat, lng, address);
+            console.log("before populatelocation");
+            this.populatelocation(fields[0]);
+            
         });
     }
 
