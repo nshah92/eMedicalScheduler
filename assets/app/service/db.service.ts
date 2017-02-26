@@ -50,6 +50,14 @@ export class dbService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    getUser(user: User) {
+        return this.http.get('http://localhost:3000/userreg/' + user.email)
+            .map((response: Response) => {
+                return response.json();
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }    
+
     logout() {
         localStorage.clear();
     }

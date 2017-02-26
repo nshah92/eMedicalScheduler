@@ -52,16 +52,24 @@ export class PatientRegComponent implements OnInit {
     ngOnInit() {
 
         if (this.dbService.isLoggedIn()) {
-            this.user = new User(
-                localStorage.getItem('email'), 
-                "", 
-                localStorage.getItem('firstname'),
-                localStorage.getItem('lastname'),
-                localStorage.getItem('dob'),
-                localStorage.getItem('gender'),
-                localStorage.getItem('insurance'),
-                localStorage.getItem('allergies')
-            )
+            this.user = new User(localStorage.getItem('email'));
+            this.dbService.getUser(this.user)
+                .subscribe(
+                    data => {
+                        this.user = new User(
+                            data.obj.email,
+                            "",
+                            data.obj.firstname,
+                            data.obj.lastname,
+                            data.obj.dob,
+                            data.obj.gender,
+                            data.obj.insuranceprovider,
+                            data.obj.allergies
+                        );
+                        console.log (data.obj);
+                    },
+                    error => console.error (error)
+                )
         }
     }
 }
