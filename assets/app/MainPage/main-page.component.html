@@ -19,5 +19,8 @@
     <div id="googleMap" style="width:65%;height:380px;float: left;"></div>
     <div style="width:30%;float: left;margin-left: 10px; overflow-y: auto; height:380px;">
         <es-listdoctor [doc] = "doc" *ngFor="let doc of docs"></es-listdoctor>
+        <div class="alert alert-info" *ngIf="!this.dbService.isLoggedIn()">
+            <strong>Info!</strong> Login to Make Appoints.
+        </div>        
     </div>
 </div>

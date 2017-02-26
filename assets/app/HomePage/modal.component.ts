@@ -28,15 +28,8 @@ export class ModalComponent {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
-                    localStorage.setItem('email', data.email);
-                    localStorage.setItem('firstname', data.firstname);
-                    localStorage.setItem('lastname', data.lastname);
-                    localStorage.setItem('dob', data.dob);            
-                    localStorage.setItem('gender', data.gender);
-                    localStorage.setItem('insurance', data.insurance);
-                    localStorage.setItem('allergies', data.allergies);                              
+                    localStorage.setItem('email', data.email);                          
                     this.statusCode = data.stat;
-                    this.router.navigateByUrl('/');
                 },
                 error => {
                     this.statusCode = error.stat;

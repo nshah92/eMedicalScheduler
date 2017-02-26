@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Doc } from '../../profile/doc.model';
+import { dbService } from '../../service/db.service'
 
 @Component({
     selector: 'es-listdoctor',
@@ -12,7 +13,7 @@ import { Doc } from '../../profile/doc.model';
 export class ListDoctorComponent {
     @Input() doc: Doc;
     
-    constructor(private _route: ActivatedRoute, private _router: Router){
+    constructor(private _route: ActivatedRoute, private _router: Router, private dbService: dbService){
        //console.log("ListDoctorComponent",this.doc.docaddress);
     }
 

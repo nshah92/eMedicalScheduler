@@ -6,6 +6,7 @@ import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DocService } from '../service/doc.service';
 import { Doc } from '../profile/doc.model';
 import { LandingPage } from '../profile/landingpage.model';
+import { dbService } from '../service/db.service';
 
 declare var google: any;
 
@@ -29,7 +30,7 @@ export class MainPageComponent
     docFlag: boolean = true;
    
 
-    constructor(private _route: ActivatedRoute, private _router: Router, private docService: DocService){
+    constructor(private _route: ActivatedRoute, private _router: Router, private docService: DocService, private dbService: dbService){
                
         this._route.queryParams.subscribe(params => {
            this.location = params["location"];
