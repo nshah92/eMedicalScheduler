@@ -14,6 +14,8 @@ import { EqualValidator } from "./validators/equal-validator.directive";
 import { routing } from "./app.routing";
 import { dbService } from "./service/db.service"
 import { DocService } from "./service/doc.service"
+import { bookAppointmentComponent } from "./appointments/bookAppointment.component";
+
 
 @NgModule({
     declarations: [
@@ -24,7 +26,8 @@ import { DocService } from "./service/doc.service"
         PhysicianRegComponent,
         MainPageComponent,
         ListDoctorComponent,
-        EqualValidator
+        EqualValidator,
+        bookAppointmentComponent
     ],
     imports: [  BrowserModule, 
                 routing,  

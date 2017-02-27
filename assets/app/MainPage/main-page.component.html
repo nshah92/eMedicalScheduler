@@ -1,16 +1,26 @@
 <hr>
 <div class="text-left">
-    <p><input type="text" name="HomePageLocation" placeholder="Location">
-        <select>
+       
+        <form class="form-horizontal" (ngSubmit)="onFind(f2)" #f2="ngForm">
+             <b>Search</b>
+            <select id="mpspeciality" name="mpspeciality" 
+              [ngModel]="mpspeciality" required>
                     <option value="Physician">Physician</option>
-                    <option value="FamilyDcotor">Family Doctor</option>
+                    <option value="Family Doctor">Family Doctor</option>
                     <option value="ENT">ENT</option>
-        </select>
-        <input type="button" class="btn btn-primary" value="Find">
-    </p>
+            </select>
+            <input type="text" placeholder="Location" 
+            id="mplocation" name="mplocation" [ngModel]="mplocation" required>
+            <button type="submit" [disabled]="!f2.valid" class="btn btn-primary">Find</button>
+        </form>
 </div>
 <hr>
 <div class="container">
     <div id="googleMap" style="width:65%;height:380px;float: left;"></div>
-    <es-listdoctor></es-listdoctor>
+    <div style="width:30%;float: left;margin-left: 10px; overflow-y: auto; height:380px;">
+        <es-listdoctor [doc] = "doc" *ngFor="let doc of docs"></es-listdoctor>
+        <div class="alert alert-info" *ngIf="!this.dbService.isLoggedIn()">
+            <strong>Info!</strong> Login to Make Appoints.
+        </div>        
+    </div>
 </div>

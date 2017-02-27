@@ -58,8 +58,59 @@ router.post('/signin', function(req, res, next) {
             message: 'Successfully logged in',
             token: token,
             userId: user._id,
-            stat: res.statusCode
+            stat: res.statusCode,
+            email: user.email,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            dob: user.dob,
+            gender: user.gender,
+            insurance: user.insuranceprovider,
+            allergies: user.allergies
         });
+    });
+});
+
+router.patch('/:email', function (req, res, next) {
+    User.findOne({email: req.params.email}, function (err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        user.firstname = req.body.firstname;
+        user.lastname = req.body.lastname;
+        user.dob = req.body.dob;
+        user.gender = req.body.gender;
+        user.insuranceprovider = req.body.insuranceprovider;
+        user.allergies = req.body.allergies;
+        user.save(function (err, result) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'User update failed',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'Updated message',
+                obj: result
+            });
+        });
+    });
+});
+
+router.get('/:email', function (req, res, next) {
+    User.findOne({email: req.params.email}, function (err, user){
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        res.status(200).json({
+            message: 'fetch user Successful',
+            obj: user
+        });                
     });
 });
 

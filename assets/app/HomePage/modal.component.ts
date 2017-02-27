@@ -28,8 +28,8 @@ export class ModalComponent {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
+                    localStorage.setItem('email', data.email);                          
                     this.statusCode = data.stat;
-                    this.router.navigateByUrl('/');
                 },
                 error => {
                     this.statusCode = error.stat;
@@ -37,7 +37,6 @@ export class ModalComponent {
                 }
             );
 
-        this.dbService.clickNo++;
         this.myForm.reset();
     }
 

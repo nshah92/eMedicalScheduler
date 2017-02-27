@@ -1,4 +1,4 @@
-import { Http, Response, Headers } from "@angular/http";
+import { Http, Response, Headers, URLSearchParams } from "@angular/http";
 import { Injectable } from "@angular/core";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
@@ -8,7 +8,6 @@ import { User } from '../profile/user.model'
 @Injectable()
 export class dbService {
     private user: User[] = [];
-    clickNo: number = 0;
 
     constructor(private http: Http) {}
 
@@ -40,6 +39,24 @@ export class dbService {
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
+
+    updateUser(user: User) {
+        const body = JSON.stringify(user);
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.patch('http://localhost:3000/userreg/' + user.email, body, {headers: headers})
+            .map((response: Response) => {
+                return response.json();
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    getUser(user: User) {
+        return this.http.get('http://localhost:3000/userreg/' + user.email)
+            .map((response: Response) => {
+                return response.json();
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }    
 
     logout() {
         localStorage.clear();
