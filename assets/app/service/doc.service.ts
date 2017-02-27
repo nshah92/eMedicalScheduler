@@ -38,6 +38,10 @@ export class DocService {
             .catch((error: Response) => Observable.throw(console.log(error)));
     }
 
+    /*registerDocAvailability(doclicense: string, date: string, time: string){
+
+    }*/
+
     getDocLocation(lp: LandingPage) {
         let params = new URLSearchParams();
         params.set('lpspeciality', lp.lpspeciality);
