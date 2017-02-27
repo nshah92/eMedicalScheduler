@@ -1,59 +1,13 @@
-<hr>
-    <h4>Doctor Information</h4>
 
-    <div class="form-group">
-        <div class="col-md-6">
-            <label class="control-label">Doctor Name</label>
-            {{doc.docfirstname}} {{doc.doclastname}}
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6">
+            <h3>{{doc.doclastname}}, {{doc.docfirstname}}</h3>
+            <p><h5>{{doc.docspeciality}}</h5>
         </div>
-
-        <div class="col-md-6">
-            <label class="control-label">Speciality</label>
-            {{doc.docspeciality}}
+        <div class="col-md-4">
+            <img src="http://www.diabetessolutionsnow.com/wp-content/uploads/2016/09/doctor-1295571_1280.png"
+                    alt="Doctor Avater" width="150" height="150">
         </div>
-
-        <div class="col-md-6">
-            <label class="control-label" >Email</label>
-            {{doc.docemail}}
-        </div>
-
-        <div class="col-md-6">
-            <label class="control-label" >Clinic Address</label>
-            {{doc.docaddress}}
-        </div>
-
-        <div class="col-md-6">
-            <label class="control-label" >City</label>
-            {{doc.doccity}}
-        </div>
-
-        <div class="col-md-6">
-            <label class="control-label" >Postal Code</label>
-            {{doc.docpostalcode}}
-        </div>
-
-        <div class="col-md-6">
-            <label class="control-label" >Province</label>
-            {{doc. docprovince}}
-        </div>
-
-        <div class="col-md-6">
-            <label class="control-label" >Website</label>
-            {{doc.docwebsite}}
-        </div>
-    </div>
-<hr>
-
-<h4>Book an Appointment</h4>
-
-<div class="form-group">
-    <div class="form-group">
-        <label class="control-label col-md-4" for="badate">Pick a Date:</label>
-        <div class="col-md-6">
-            <input type="date" [ngModel]="user?.badate" name="badate" class="form-control" id="badate" required >
-        </div>
-    </div>
-
-    
+    </div>        
 </div>
-

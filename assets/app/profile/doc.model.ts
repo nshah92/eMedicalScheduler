@@ -10,7 +10,7 @@ export class Doc {
     doccity: string;
     docpostalcode: string;
     docprovince: string;
-    docwebsite: string;
+    docuni: string;
     
     constructor(docfirstname: string,
                 doclastname: string,
@@ -23,7 +23,7 @@ export class Doc {
                 doccity: string,
                 docpostalcode: string,
                 docprovince: string,
-                docwebsite: string) {
+                docuni: string) {
                                         this.docfirstname = docfirstname;
                                         this.doclastname = doclastname;
                                         this.docemail = docemail;
@@ -35,7 +35,7 @@ export class Doc {
                                         this.doccity = doccity;
                                         this.docpostalcode = docpostalcode;
                                         this.docprovince = docprovince;
-                                        this.docwebsite = docwebsite;
+                                        this.docuni = docuni;
                                         
                                         
     }
