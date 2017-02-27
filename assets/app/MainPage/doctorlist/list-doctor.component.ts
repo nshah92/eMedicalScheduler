@@ -35,7 +35,6 @@ export class ListDoctorComponent {
             }
         };
 
-        console.log("ListDoctorComponent",this.doc.docfirstname);
         this._router.navigate(['/booking'],navigationExtras);
     }
 

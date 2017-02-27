@@ -2,7 +2,7 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-offset-2 col-md-6">
-            <h3>{{doc.doclastname}}, {{doc.docfirstname}}</h3>
+            <h2>{{doc.doclastname}}, {{doc.docfirstname}}</h2>
             <p><h5>{{doc.docspeciality}}</h5>
         </div>
         <div class="col-md-4">
@@ -10,4 +10,79 @@
                     alt="Doctor Avater" width="150" height="150">
         </div>
     </div>        
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Qualifications and Experience</h3>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="change">Education</label>
+            </div>
+            <div class="col-md-offset-1 col-md-7">
+                {{doc.docuni}}
+            </div>            
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="change">Language Spoken</label>
+            </div>
+            <div class="col-md-offset-1 col-md-7">
+                Spanish, English
+            </div>            
+        </div>  
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="change">Specialty</label>
+            </div>
+            <div class="col-md-offset-1 col-md-7">
+                {{doc.docspeciality}}
+            </div>            
+        </div>  
+        <hr>  
+        <div class="row">
+            <div class="col-md-4">
+                <label class="change">Professional Statement</label>
+            </div>
+            <div class="col-md-offset-1 col-md-7" style="text-align:justify">
+                Doctor {{doc.doclastname}}, is a board certified health practioner. As a health practitioner, he believes in aligning comprehensive and compassionate patient care with evidence based practice.
+                <br><br>He is also a member of the American Association of Nurse Practitioners and Sigma Theta Tau International Honors Society of Nursing
+            </div>            
+        </div>     
+        <hr>                 
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading dd">
+                <h3>Book an Appointment</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="usr">Insurance Plan</label>
+                    <input type="text" [ngModel]="user?.insuranceprovider" class="form-control" id="usr" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="sel1">Special Need</label>
+                    <select class="form-control" id="sel1">
+                        <option>Need a translator</option>
+                        <option>Wheel-Chair Access</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Reason For Visit</label>
+                    <textarea class="form-control" rows="4" id="comment"></textarea>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Flexible?</label>
+                </div>
+                <div class="form-group">
+                    <button class="btn dd">Make Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>    
 </div>
