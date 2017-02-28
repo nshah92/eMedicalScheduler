@@ -21,7 +21,7 @@
     </form>    
     <hr>    
 </div>
-<div class="row text-center">
+<div class="row text-center" *ngIf="!this.dbService.isLoggedIn()">
     <h5>Are you a Health Care Provider?</h5>
     <a href="" [routerLink]="['/physician-registration']">List Here</a>
 </div>

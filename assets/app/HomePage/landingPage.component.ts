@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from "@angular/core";
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { dbService } from '../service/db.service';
 
 import { LandingPage } from '../profile/landingpage.model';
 
@@ -14,7 +15,7 @@ declare var google: any;
 
 export class LandingPageComponent implements OnInit {
     lplocation:string;
-    constructor(private _route: ActivatedRoute, private _router: Router){}
+    constructor(private _route: ActivatedRoute, private _router: Router, private dbService: dbService){}
 
     onFind(form: NgForm): void{
         
