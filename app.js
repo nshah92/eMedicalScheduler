@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var appRoutes = require('./routes/app');
 var userRoutes = require('./routes/user');
 var docRoutes = require('./routes/doc');
+var docAvailabilityRoutes = require('./routes/availability');
 var mongoose = require('mongoose');
 
 var app = express();
@@ -35,6 +36,7 @@ app.use(function (req, res, next) {
 
 app.use('/userreg', userRoutes);
 app.use('/docreg', docRoutes);
+app.use('/docavailability', docAvailabilityRoutes);
 app.use('/', appRoutes);
 
 

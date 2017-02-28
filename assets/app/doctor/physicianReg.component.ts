@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Doc } from '../profile/doc.model';
+import { Availability } from '../profile/availability.model';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DocService } from '../service/doc.service';
 
@@ -10,6 +11,8 @@ import { DocService } from '../service/doc.service';
     templateUrl: 'physicianReg.component.html'
 })
 export class PhysicianRegComponent {
+
+    availability:Availability;
 
     constructor(private docService: DocService){}
 
@@ -28,11 +31,11 @@ export class PhysicianRegComponent {
                                 form.value.docuni,
                                 );
 
-        /*this.docService.registerDoc(doc)
+        this.docService.registerDoc(doc)
             .subscribe(
             data => console.log(data),
             error => console.error(error)
-            );*/
+            );
 
         for(let i = 0; i < 2; i++){
             
@@ -82,13 +85,34 @@ export class PhysicianRegComponent {
                  }
              }             
              
-             console.log(date);  
+             //console.log(date);  
+
+             /*NOTE: Need to implement logic wrt 
+             dynamic date generation. Here I am 
+             hardcoding March 01 and March 02*/
+
+             for(let j = 0; j < 5; j++){
+                 if(i == 0){
+                     this.availability = new Availability(form.value.doclicense, "03/01/2017", date[j].toString());
+                     this.docService.registerDocAvailability(this.availability)
+                        .subscribe(
+                            data => console.log(data),
+                            error => console.error(error)
+                        );
+                     //console.log(this.availability);
+                 } else{
+                     this.availability = new Availability(form.value.doclicense, "03/02/2017", date[j].toString());
+                     this.docService.registerDocAvailability(this.availability)
+                        .subscribe(
+                            data => console.log(data),
+                            error => console.error(error)
+                        );
+                     //console.log(this.availability);
+                 }
+             }
+
              console.log("-------------");
-             /*this.docService.registerDocAvailability(form.value.doclicense, date)
-                .subscribe(
-                    data => console.log(data),
-                    error => console.error(error)
-                );*/
+             
         }
         
         form.resetForm();

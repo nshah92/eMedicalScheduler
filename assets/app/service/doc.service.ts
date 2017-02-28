@@ -4,17 +4,19 @@ import 'rxjs/Rx';
 import { Observable } from "rxjs";
 
 import { Doc } from '../profile/doc.model';
+import { Availability } from '../profile/availability.model';
 import { LandingPage } from '../profile/landingpage.model';
 
 @Injectable()
 export class DocService {
     private doc: Doc[] = [];
+    private availability: Availability[] = [];
     constructor(private http: Http) {}
     speciality: String;
     location: String;
 
     registerDoc(doc: Doc) {
-        console.log("Doc:",doc);
+        console.log("doc.service - Doc:",doc);
         const body = JSON.stringify(doc);
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/docreg', body, {headers: headers})
@@ -38,10 +40,20 @@ export class DocService {
             .catch((error: Response) => Observable.throw(console.log(error)));
     }
 
-    registerDocAvailability(doclicense: string, date: any){
-        console.log("doclicense", doclicense);
-        console.log("date:", date);
-
+    registerDocAvailability(availability: Availability){
+        console.log("doc.service - Availability: ", availability);
+        const body = JSON.stringify(availability);
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.post('http://localhost:3000/docavailability', body, {headers: headers})
+            .map((response: Response) => {
+                const result = response.json();
+                const availability = new Availability(result.obj.doclicense,
+                                                        result.obj.docdate, 
+                                                        result.obj.doctime);
+                this.availability.push(availability);
+                return availability;
+            })
+            .catch((error: Response) => Observable.throw(console.log(error)));
     }
 
     getDocLocation(lp: LandingPage) {
