@@ -38,9 +38,11 @@ export class DocService {
             .catch((error: Response) => Observable.throw(console.log(error)));
     }
 
-    /*registerDocAvailability(doclicense: string, date: string, time: string){
+    registerDocAvailability(doclicense: string, date: any){
+        console.log("doclicense", doclicense);
+        console.log("date:", date);
 
-    }*/
+    }
 
     getDocLocation(lp: LandingPage) {
         let params = new URLSearchParams();

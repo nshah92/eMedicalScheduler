@@ -84,8 +84,13 @@ export class PhysicianRegComponent {
              
              console.log(date);  
              console.log("-------------");
+             /*this.docService.registerDocAvailability(form.value.doclicense, date)
+                .subscribe(
+                    data => console.log(data),
+                    error => console.error(error)
+                );*/
         }
-        //this.docService.registerDocAvailability(form.value.doclicense)
+        
         form.resetForm();
     }
 }
