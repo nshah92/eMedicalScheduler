@@ -18,7 +18,7 @@ router.post('/', function (req, res, next) {
         doccity: req.body.doccity,
         docpostalcode: req.body.docpostalcode,
         docprovince: req.body.docprovince,
-        docwebsite: req.body.docwebsite
+        docuni: req.body.docuni
     });
     doc.save(function (err, result) {
         if (err) {

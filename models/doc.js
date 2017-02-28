@@ -14,7 +14,7 @@ var schema = new Schema({
     doccity: {type: String, required: true},
     docpostalcode: {type: String, required: true},
     docprovince: {type: String, required: true},
-    docwebsite: {type: String, required: true}
+    docuni: {type: String, required: true}
 });
 
 schema.plugin(mongooseUniqueValidator);

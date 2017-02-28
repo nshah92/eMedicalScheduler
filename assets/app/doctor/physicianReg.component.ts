@@ -25,7 +25,7 @@ export class PhysicianRegComponent {
                                 form.value.doccity,
                                 form.value.docpostalcode,
                                 form.value.docprovince,
-                                form.value.docwebsite,
+                                form.value.docuni,
                                 );
 
         this.docService.registerDoc(doc)

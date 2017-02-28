@@ -31,7 +31,7 @@ export class DocService {
                                         result.obj.doccity,
                                         result.obj.docpostalcode,
                                         result.obj.docprovince,
-                                        result.obj.docwebsite);
+                                        result.obj.docuni);
                 this.doc.push(doc);
                 return doc;
             })
@@ -60,7 +60,7 @@ export class DocService {
                         doc.doccity,
                         doc.docpostalcode,
                         doc.docprovince,
-                        doc.docwebsite)
+                        doc.docuni)
                     );
                 }
                 this.doc = transformedDocs;

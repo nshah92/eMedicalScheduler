@@ -66,7 +66,6 @@ export class PatientRegComponent implements OnInit {
                             data.obj.insuranceprovider,
                             data.obj.allergies
                         );
-                        console.log (data.obj);
                     },
                     error => console.error (error)
                 )
