@@ -3,9 +3,9 @@ var Schema = mongoose.Schema;
 var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var schema = new Schema({
-    doclicense: {type: String, required: true, unique: true},
-    date: {type: String, required: true},
-    time: {type: String, required: true}
+    doclicense: {type: String, required: true},
+    docdate: {type: String, required: true},
+    doctime: {type: String, required: true}
 });
 
 schema.plugin(mongooseUniqueValidator);

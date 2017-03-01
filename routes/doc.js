@@ -4,7 +4,6 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
 var Doc = require('../models/doc');
-var Availability = require('../models/availability');
 
 router.post('/', function (req, res, next) {
     var doc = new Doc({
