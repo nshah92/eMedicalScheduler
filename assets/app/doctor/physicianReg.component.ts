@@ -33,8 +33,8 @@ export class PhysicianRegComponent {
 
         this.docService.registerDoc(doc)
             .subscribe(
-            data => console.log(data),
-            error => console.error(error)
+                data => console.log(data),
+                error => console.error(error)
             );
 
         for(let i = 0; i < 2; i++){
@@ -59,62 +59,41 @@ export class PhysicianRegComponent {
              }
 
              for(let j = 0; j < 5; j++){
-                 if(date[j] === 9){
+                 if (date[j] === 9){
                      date[j] = 900;
-                 }
-                 if(date[j] === 10){
-                     date[j] = 1000;
-                 }
-                 if(date[j] === 11){
-                     date[j] = 1100;
-                 }
-                 if(date[j] === 12){
-                     date[j] = 1200;
-                 }
-                 if(date[j] === 13){
-                     date[j] = 1300;
-                 }
-                 if(date[j] === 14){
-                     date[j] = 1400;
-                 }
-                 if(date[j] === 15){
-                     date[j] = 1500;
-                 }
-                 if(date[j] === 16){
-                     date[j] = 1600;
+                 }else {
+                     date[j] = parseInt(date[j] + '00');
                  }
              }             
              
-             //console.log(date);  
-
-             /*NOTE: Need to implement logic wrt 
-             dynamic date generation. Here I am 
-             hardcoding March 01 and March 02*/
+            var currentDate = new Date().toLocaleDateString();
+            var day = new Date();
+            var dd = this.addDays (day, 1);
+            var followingday = dd.getUTCMonth()+1 + "/" + dd.getDate() + "/" + dd.getFullYear();
 
              for(let j = 0; j < 5; j++){
                  if(i == 0){
-                     this.availability = new Availability(form.value.doclicense, "03/01/2017", date[j].toString());
+                     this.availability = new Availability(form.value.doclicense, currentDate, date[j].toString());
                      this.docService.registerDocAvailability(this.availability)
                         .subscribe(
                             data => console.log(data),
                             error => console.error(error)
                         );
-                     //console.log(this.availability);
                  } else{
-                     this.availability = new Availability(form.value.doclicense, "03/02/2017", date[j].toString());
+                     this.availability = new Availability(form.value.doclicense, followingday, date[j].toString());
                      this.docService.registerDocAvailability(this.availability)
                         .subscribe(
                             data => console.log(data),
                             error => console.error(error)
                         );
-                     //console.log(this.availability);
                  }
              }
-
-             console.log("-------------");
-             
         }
-        
         form.resetForm();
     }
+
+    addDays(date: Date, days: number): Date {
+        date.setDate(date.getDate() + days);
+        return date;
+    }    
 }

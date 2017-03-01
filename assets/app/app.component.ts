@@ -13,6 +13,7 @@ import { User } from './profile/user.model';
 export class AppComponent implements OnInit {
     pageTitle: string = "e-Medical Scheduler";
     myForm: FormGroup;
+    cc: number;
 
     constructor(private dbService: dbService, private _router: Router){}
 
@@ -29,7 +30,5 @@ export class AppComponent implements OnInit {
         this._router.navigate(['/patient-registration']);
     }  
 
-    ngOnInit() {
-
-    }
+    ngOnInit() {}
 }
