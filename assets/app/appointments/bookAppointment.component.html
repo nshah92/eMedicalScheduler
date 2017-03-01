@@ -76,6 +76,15 @@
                     <label for="comment">Reason For Visit</label>
                     <textarea class="form-control" rows="4" id="comment"></textarea>
                 </div>
+
+                <div id="{{entries.value}}" *ngFor="let entry of entries;">
+                    <form class="form-vertical" #b="ngForm">
+                        <div class="panel-body" align="form-vertical">
+                            <input type="button" name="timeslot" value="{{entry.description}}"/>
+                        </div>
+                    </form>
+                </div>
+                
                 <div class="checkbox">
                     <label><input type="checkbox" value="">Flexible?</label>
                 </div>

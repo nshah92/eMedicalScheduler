@@ -22,6 +22,7 @@ export class bookAppointmentComponent implements OnInit
 {
     @Input() doc: Doc;
     user: User;
+    entries = [];
     
     constructor(private _route: ActivatedRoute, 
                 private _router: Router,
@@ -53,5 +54,24 @@ export class bookAppointmentComponent implements OnInit
                 },
                 error => console.error (error)
             )
+
+        this.entries = [
+            {
+                description: '10:00',
+                value: 1
+            },
+            {
+                description: '11:00',
+                value: 2
+            },
+            {
+                description: '12:00',
+                value: 3
+            },
+            {
+                description: '1:00',
+                value: 4
+            }
+        ];
     }
 }
