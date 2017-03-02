@@ -16,7 +16,7 @@ export class DocService {
     location: String;
 
     registerDoc(doc: Doc) {
-        console.log("doc.service - Doc:",doc);
+        //console.log("doc.service - Doc:",doc);
         const body = JSON.stringify(doc);
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/docreg', body, {headers: headers})
@@ -41,7 +41,7 @@ export class DocService {
     }
 
     registerDocAvailability(availability: Availability){
-        console.log("doc.service - Availability: ", availability);
+        //console.log("doc.service - Availability: ", availability);
         const body = JSON.stringify(availability);
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/docavailability', body, {headers: headers})
