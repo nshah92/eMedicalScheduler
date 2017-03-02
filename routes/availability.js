@@ -23,4 +23,20 @@ router.post('/', function (req, res, next) {
     });
 });
 
+router.get('/', function(req,res,next){
+    Availability.find({doclicense: req.param('doclicense')})
+        .exec(function(err, doctime){
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        res.status(200).json({
+            message: 'fetch user Successful',
+            obj: doctime
+        });  
+    });
+});
+
 module.exports = router;

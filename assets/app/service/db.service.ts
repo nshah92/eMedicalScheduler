@@ -56,7 +56,7 @@ export class dbService {
                 return response.json();
             })
             .catch((error: Response) => Observable.throw(error.json()));
-    }    
+    }
 
     logout() {
         localStorage.clear();

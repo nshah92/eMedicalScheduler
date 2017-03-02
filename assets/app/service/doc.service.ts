@@ -87,7 +87,7 @@ export class DocService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
-    getMarkerPosition(address: string, postalcode: string, city:string){
+  getMarkerPosition(address: string, postalcode: string, city:string){
        const headers = new Headers({'Content-Type': 'application/html'});
 
        if(address.length == 0 && postalcode.length ==0){
@@ -102,4 +102,14 @@ export class DocService {
                 .catch((error: Response) => Observable.throw(error.json()));
        }
    }
+
+   gettime(doc: Doc) {
+       console.log("In Gettime method", doc.doclicense);
+       let params = new URLSearchParams();
+        params.set('doclicense', doc.doclicense);
+
+        return this.http.get('http://localhost:3000/docavailability/', {search: params})
+            .map((response: Response) => response.json().obj)
+            .catch((error: Response) => Observable.throw(error));
+    }
 }
