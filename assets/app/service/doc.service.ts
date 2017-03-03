@@ -103,7 +103,7 @@ export class DocService {
        }
    }
 
-   gettime(doc: Doc) {
+   getTime(doc: Doc) {
        console.log("In Gettime method", doc.doclicense);
        let params = new URLSearchParams();
         params.set('doclicense', doc.doclicense);

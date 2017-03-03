@@ -24,7 +24,7 @@ export class bookAppointmentComponent implements OnInit {
     @Input() doc: Doc;
 
     availability: Availability[];
-    date1 :any;
+    date1: any;
     date2: any;
     user: User;
     entries = [];
@@ -50,36 +50,32 @@ export class bookAppointmentComponent implements OnInit {
                 params["website"]);
         });
     }
-    getAvailabiitydata() {
-        let tempdate: string;
-        console.log("getAvailabiitydata",this.availability);
-        console.log("getAvailabiitydata", this.availability[0].docdate);
+    getAvailabiityDate() {
         this.date1 = this.availability[0].docdate;
-        for(let i = 0; i < this.availability.length; i++){
-            if(this.date1 != this.availability[i].docdate)
-            {
-                this.date2=this.availability[i].docdate;
+        for (let i = 0; i < this.availability.length; i++) {
+            if (this.date1 != this.availability[i].docdate) {
+                this.date2 = this.availability[i].docdate;
             }
         }
-        console.log(this.date1);
-        console.log(this.date2);
+    }
+    test() {
+        console.log("Testting button click");
     }
 
     ngOnInit() {
         this.user = new User(localStorage.getItem('email'));
         this.dbService.getUser(this.user)
-            .subscribe( data => {
+            .subscribe(data => {
                 this.user.insuranceprovider = data.obj.insuranceprovider;
                 console.log(data.obj);
             },
             error => console.error(error));
 
-        this.docService.gettime(this.doc)
+        this.docService.getTime(this.doc)
             .subscribe(
             data => {
                 this.availability = data;
-                console.log("Doc time Availability:", this.availability)
-                this.getAvailabiitydata();
+                this.getAvailabiityDate();
             },
             error => console.log(error)
             );
