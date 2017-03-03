@@ -32,7 +32,7 @@ export class ListDoctorComponent {
                 "postalcode": this.doc.docpostalcode,
                 "email": this.doc.docemail,
                 "website": this.doc.docuni,
-                "license": this.doc.doclicense,
+                "license": this.doc.doclicense
             }
         };
 

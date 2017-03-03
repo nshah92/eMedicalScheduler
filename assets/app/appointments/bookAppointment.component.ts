@@ -29,7 +29,6 @@ export class bookAppointmentComponent implements OnInit {
     user: User;
     entries = [];
     dates: string[] = [];
-    testelement: string;
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
@@ -53,7 +52,7 @@ export class bookAppointmentComponent implements OnInit {
     }
     getAvailabiitydata() {
         let tempdate: string;
-                    console.log("getAvailabiitydata",this.availability);
+        console.log("getAvailabiitydata",this.availability);
         console.log("getAvailabiitydata", this.availability[0].docdate);
         this.date1 = this.availability[0].docdate;
         for(let i = 0; i < this.availability.length; i++){
@@ -69,13 +68,11 @@ export class bookAppointmentComponent implements OnInit {
     ngOnInit() {
         this.user = new User(localStorage.getItem('email'));
         this.dbService.getUser(this.user)
-            .subscribe(
-            data => {
+            .subscribe( data => {
                 this.user.insuranceprovider = data.obj.insuranceprovider;
                 console.log(data.obj);
             },
-            error => console.error(error)
-            );
+            error => console.error(error));
 
         this.docService.gettime(this.doc)
             .subscribe(
@@ -86,12 +83,6 @@ export class bookAppointmentComponent implements OnInit {
             },
             error => console.log(error)
             );
-                            console.log(this.testelement);
-
-
-            document.getElementById("appointmentdate").onclick = function(){
-                console.log("Clicked");
-            }
 
     }
 }

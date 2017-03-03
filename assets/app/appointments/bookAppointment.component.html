@@ -78,37 +78,44 @@
                     <label for="comment">Reason For Visit</label>
                     <textarea class="form-control" rows="4" id="comment"></textarea>
                 </div>
-
-
-                <!--<div class="row">
-                    <div class="col-md-4">-->
-                <!--<div class="panel panel-default">-->
-                <!--<div class="panel-body">-->
-
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>
-                    <div class="col-md-8">-->
-                <!--<div class="panel panel-default">-->
-                <!--<div class="panel-body">-->
-                <!--<div class="form-group">-->
-
-
-                <div class="alert alert-info">
-                    <!--<div class="form-inline">-->
-                            Date
-                        <div *ngFor="let entry of entries" class="form-inline">  
-                                <input type="button" name="timeslot" value="10:20">
-                        </div>
-                    <!--</div>-->
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Day 1</th>
+                                <th>Day 2</th>
+                                <th>Day 3</th>
+                                <th>Day 4</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><button class="btn btn-primary">10:00</button></td>
+                                <td><button class="btn btn-primary">11:00</button></td>
+                                <td><button class="btn btn-primary">10:00</button></td>
+                                <td><button class="btn btn-primary">11:00</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btn btn-primary">13:00</button></td>
+                                <td><button class="btn btn-primary">18:00</button></td>
+                                <td><button class="btn btn-primary">10:00</button></td>
+                                <td><button class="btn btn-primary">11:00</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btn btn-primary">10:00</button></td>
+                                <td><button class="btn btn-primary">11:00</button></td>
+                                <td><button class="btn btn-primary">10:00</button></td>
+                                <td><button class="btn btn-primary">11:00</button></td>
+                            </tr>
+                            <tr>
+                                <td><button class="btn btn-primary">13:00</button></td>
+                                <td><button class="btn btn-primary">18:00</button></td>
+                                <td><button class="btn btn-primary">10:00</button></td>
+                                <td><button class="btn btn-primary">11:00</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <!--</div>-->
-
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>
-                </div>-->
-
                 <div class="checkbox">
                     <label><input type="checkbox" value="">Flexible?</label>
                 </div>
