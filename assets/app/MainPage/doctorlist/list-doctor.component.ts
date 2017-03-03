@@ -31,7 +31,8 @@ export class ListDoctorComponent {
                 "province": this.doc.docprovince,
                 "postalcode": this.doc.docpostalcode,
                 "email": this.doc.docemail,
-                "website": this.doc.docuni
+                "website": this.doc.docuni,
+                "license": this.doc.doclicense
             }
         };
 

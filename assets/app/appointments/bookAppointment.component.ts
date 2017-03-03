@@ -33,13 +33,14 @@ export class bookAppointmentComponent implements OnInit
                                 params["email"],
                                 "",
                                 params["speciality"],
-                                "",
+                                params["license"],
                                 params["clinicname"],
                                 params["address"],
                                 params["city"],
                                 params["postalcode"],
                                 params["province"],
-                                params["website"]);
+                                params["uni"]
+                            );
        });
     }
 
@@ -49,7 +50,6 @@ export class bookAppointmentComponent implements OnInit
             .subscribe(
                 data => {
                     this.user.insuranceprovider = data.obj.insuranceprovider;
-                    console.log (data.obj);
                 },
                 error => console.error (error)
             )
