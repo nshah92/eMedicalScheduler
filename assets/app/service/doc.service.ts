@@ -108,8 +108,20 @@ export class DocService {
        let params = new URLSearchParams();
         params.set('doclicense', doc.doclicense);
 
-        return this.http.get('http://localhost:3000/docavailability/', {search: params})
-            .map((response: Response) => response.json().obj)
+        return this.http.get('http://localhost:3000/docavailability', {search: params})
+            .map((response: Response) => {
+                const avails = response.json().obj;
+                let transformedAvailability: Availability[] = [];
+                for (let avail of avails) {
+                    transformedAvailability.push(new Availability(
+                        avail.doclicense,
+                        avail.docdate,
+                        avail.doctime)
+                    ); 
+                }
+                this.availability = transformedAvailability;
+                return transformedAvailability;
+            })
             .catch((error: Response) => Observable.throw(error));
     }
 }
