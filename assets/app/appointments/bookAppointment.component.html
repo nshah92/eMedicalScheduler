@@ -52,6 +52,10 @@
                 and compassionate patient care with evidence based practice.
                 <br><br>He is also a member of the American Association of Nurse Practitioners and Sigma Theta Tau International
                 Honors Society of Nursing
+                <br><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
+                and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
             </div>
         </div>
         <hr>
@@ -79,48 +83,25 @@
                     <textarea class="form-control" rows="4" id="comment"></textarea>
                 </div>
                
-                <hr>
-
-                <div class="form-group">
-                    <div class="col-md-6" align="center">
-                        <table class="table" style ="width: 50%; margin: auto;">
-                            <thead>
-                                <tr>
-                                    <th>{{date1}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <div *ngFor="let entry of availability">
-                                        <div *ngIf="entry.docdate == date1">
-                                            <td><button class="btn btn-primary" style="width: 100px;" (click)="test()">{{entry.doctime}}</button></td>
-                                        </div>
-                                    </div>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="col-md-6" align="center">
-                        <table class="table" style ="width: 50%; margin: auto;">
-                            <thead>
-                                <tr>
-                                    <th>{{date2}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <div *ngFor="let entry of availability">
-                                        <div *ngIf="entry.docdate == date2">
-                                            <td><button class="btn btn-primary" style="width: 100px;">{{entry.doctime}}</button></td>
-                                        </div>
-                                    </div>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <th>availability</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{date1}}</td>
+                                <td *ngFor="let entry of availability"><button *ngIf="entry.docdate == date1" class="btn btn-primary" (click)="test()">
+                                    {{entry.doctime}}</button></td>
+                            </tr>
+                            <tr>
+                                <td>{{date2}}</td>
+                                <td *ngFor="let entry of this.avail1"><button *ngIf="entry.docdate == date2" class="btn btn-primary" (click)="test()">
+                                    {{entry.doctime}}</button></td>
+                            </tr>                            
+                        </tbody>
+                    </table>
                 </div>
-
                 <hr>
                 <div class="checkbox">
                     <label><input type="checkbox" value="">Flexible?</label>

@@ -29,6 +29,7 @@ export class bookAppointmentComponent implements OnInit {
     user: User;
     entries = [];
     dates: string[] = [];
+    avail1 = [];
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
@@ -47,17 +48,33 @@ export class bookAppointmentComponent implements OnInit {
                 params["city"],
                 params["postalcode"],
                 params["province"],
-                params["website"]);
+                params["website"]
+            );
         });
     }
+
+    formatDate(date: any) {
+        var Myear: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        var date_array = date.split('/')
+        var day;
+        if (date_array[1] < 10){
+            day = '0' + date_array[1];
+        }else{
+            day = date_array[1];
+        }
+        return Myear[date_array[0]] + " " + day;
+    }
+
     getAvailabiityDate() {
         this.date1 = this.availability[0].docdate;
         for (let i = 0; i < this.availability.length; i++) {
             if (this.date1 != this.availability[i].docdate) {
                 this.date2 = this.availability[i].docdate;
+                this.avail1.push(this.availability[i]);
             }
         }
     }
+
     test() {
         console.log("Testting button click");
     }
@@ -67,17 +84,16 @@ export class bookAppointmentComponent implements OnInit {
         this.dbService.getUser(this.user)
             .subscribe(data => {
                 this.user.insuranceprovider = data.obj.insuranceprovider;
-                console.log(data.obj);
             },
             error => console.error(error));
 
         this.docService.getTime(this.doc)
             .subscribe(
-            data => {
-                this.availability = data;
-                this.getAvailabiityDate();
-            },
-            error => console.log(error)
+                data => {
+                    this.availability = data;
+                    this.getAvailabiityDate();
+                },
+                error => console.log(error)
             );
 
     }
