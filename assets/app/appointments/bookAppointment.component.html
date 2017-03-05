@@ -86,17 +86,17 @@
                 <div>
                     <table class="table">
                         <thead>
-                            <th>availability</th>
+                            <th>Availability</th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{date1}}</td>
-                                <td *ngFor="let entry of availability"><button *ngIf="entry.docdate == date1" class="btn btn-primary" (click)="test()">
+                                <td><strong>{{format1}}</strong></td>
+                                <td *ngFor="let entry of this.availability"><button *ngIf="entry.docdate == date1" class="btn btn-primary" (click)="test()" id="timeslot">
                                     {{entry.doctime}}</button></td>
                             </tr>
                             <tr>
-                                <td>{{date2}}</td>
-                                <td *ngFor="let entry of this.avail1"><button *ngIf="entry.docdate == date2" class="btn btn-primary" (click)="test()">
+                                <td><strong>{{format2}}</strong></td>
+                                <td *ngFor="let entry of this.avail1"><button *ngIf="entry.docdate == date2" class="btn btn-primary" (click)="test()" id="timeslot">
                                     {{entry.doctime}}</button></td>
                             </tr>                            
                         </tbody>

@@ -30,6 +30,8 @@ export class bookAppointmentComponent implements OnInit {
     entries = [];
     dates: string[] = [];
     avail1 = [];
+    format1: any;
+    format2: any;
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
@@ -62,7 +64,7 @@ export class bookAppointmentComponent implements OnInit {
         }else{
             day = date_array[1];
         }
-        return Myear[date_array[0]] + " " + day;
+        return Myear[date_array[0]-1] + " " + day + ", " + date_array[2];
     }
 
     getAvailabiityDate() {
@@ -73,10 +75,13 @@ export class bookAppointmentComponent implements OnInit {
                 this.avail1.push(this.availability[i]);
             }
         }
+        this.format1 = this.formatDate(this.date1);
+        this.format2 = this.formatDate(this.date2);
     }
 
     test() {
-        console.log("Testting button click");
+        var elem = (<HTMLInputElement>document.getElementById("myBtn")).value;
+        console.log(elem);
     }
 
     ngOnInit() {
@@ -95,6 +100,5 @@ export class bookAppointmentComponent implements OnInit {
                 },
                 error => console.log(error)
             );
-
     }
 }
