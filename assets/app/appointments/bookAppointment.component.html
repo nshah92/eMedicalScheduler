@@ -13,6 +13,7 @@
 </div>
 
 <div class="row">
+
     <div class="col-md-6">
         <h3>Qualifications and Experience</h3>
         <hr>
@@ -52,37 +53,23 @@
                 and compassionate patient care with evidence based practice.
                 <br><br>He is also a member of the American Association of Nurse Practitioners and Sigma Theta Tau International
                 Honors Society of Nursing
-                <br><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <br><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                including versions of Lorem Ipsum.
             </div>
         </div>
         <hr>
     </div>
+
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading dd">
                 <h3>Book an Appointment</h3>
             </div>
             <div class="panel-body">
-                <div class="form-group">
-                    <label for="usr">Insurance Plan</label>
-                    <input type="text" [ngModel]="user?.insuranceprovider" class="form-control" id="usr" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="sel1">Special Need</label>
-                    <select class="form-control" id="sel1">
-                        <option>Need a translator</option>
-                        <option>Wheel-Chair Access</option>
-                        <option>Others</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="comment">Reason For Visit</label>
-                    <textarea class="form-control" rows="4" id="comment"></textarea>
-                </div>
-               
                 <div>
                     <table class="table">
                         <thead>
@@ -91,24 +78,45 @@
                         <tbody>
                             <tr>
                                 <td><strong>{{format1}}</strong></td>
-                                <td *ngFor="let entry of this.availability"><button *ngIf="entry.docdate == date1" class="btn btn-primary" (click)="test($event)" id="{{date1}}-{{entry.doctime}}">
+                                <td *ngFor="let entry of this.availability"><button *ngIf="entry.docdate == date1" class="btn btn-primary" (click)="onDateClick($event)"
+                                        id="{{date1}}-{{entry.doctime}}">
                                     {{entry.doctime}}</button></td>
                             </tr>
                             <tr>
                                 <td><strong>{{format2}}</strong></td>
-                                <td *ngFor="let entry of this.avail1"><button *ngIf="entry.docdate == date2" class="btn btn-primary" (click)="test($event)" id="{{entry.doctime}}">
+                                <td *ngFor="let entry of this.avail1"><button *ngIf="entry.docdate == date2" class="btn btn-primary" (click)="onDateClick($event)"
+                                        id="{{date2}}-{{entry.doctime}}">
                                     {{entry.doctime}}</button></td>
-                            </tr>                            
+                            </tr>
                         </tbody>
                     </table>
                 </div>
                 <hr>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="">Flexible?</label>
-                </div>
                 <div class="form-group">
-                    <button class="btn dd">Make Appointment</button>
+                    <label for="usr">Insurance Plan</label>
+                    <input type="text" [ngModel]="user?.insuranceprovider" class="form-control" name="insuranceprovider" id="insuranceprovider"
+                        disabled>
                 </div>
+                <form class="form-horizontal" (ngSubmit)="bookAppointment(b)" #b="ngForm">
+                    <div class="form-group">
+                        <label for="sel1">Special Need</label>
+                        <select class="form-control" id="sel1" [ngModel]="user?.sel1" class="form-control" name="sel1">
+                            <option>Need a translator</option>
+                            <option>Wheel-Chair Access</option>
+                            <option>Others</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Reason For Visit</label>
+                        <textarea class="form-control" rows="4" [ngModel]="user?.comment" class="form-control" name="comment" id="comment"></textarea>
+                    </div>
+
+                    <div class="checkbox">
+                        <label><input type="checkbox" [ngModel]="user?.flex" value="flexible" class="form-control" name="flex" id="flex">Flexible?</label>
+                    </div>
+                    <hr>
+                    <button class="btn dd" type="submit">Make Appointment</button>
+                </form>
             </div>
         </div>
     </div>

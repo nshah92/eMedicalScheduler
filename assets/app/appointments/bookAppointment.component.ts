@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Doc } from '../profile/doc.model';
 import { User } from '../profile/user.model';
 import { dbService } from '../service/db.service';
@@ -32,6 +33,8 @@ export class bookAppointmentComponent implements OnInit {
     avail1 = [];
     format1: any;
     format2: any;
+    datetime: any;
+    checkboxVal: boolean;
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
@@ -53,6 +56,19 @@ export class bookAppointmentComponent implements OnInit {
                 params["website"]
             );
         });
+    }
+
+    bookAppointment(form: NgForm) {
+        
+        this.checkboxVal = form.value.flex;
+        console.log("bookAppointment", this.doc.doclicense);
+        console.log("bookAppointment",this.datetime);
+        console.log("bookAppointment",this.checkboxVal);
+        console.log("bookAppointment",this.user.firstname);
+
+        //Need to make calls to MongoDB here
+        //1. Insert into appointment collection
+        //2. Update availability collection for the specific time with "-" or any other character
     }
 
     formatDate(date: any) {
@@ -79,21 +95,26 @@ export class bookAppointmentComponent implements OnInit {
         this.format2 = this.formatDate(this.date2);
     }
 
-    test(event) {
+    onDateClick(event) {
         var target = event.target || event.srcElement || event.currentTarget;
         var idAttr = target.attributes.id;
         var value = idAttr.nodeValue;
         //var property = <HTMLInputElement>document.getElementById(idAttr);
         //property.style.backgroundColor = "black";
-        console.log(value);
-        console.log(idAttr);
+        
+        this.datetime = value;
+        console.log("onDateClick", this.datetime);
     }
 
     ngOnInit() {
+        this.checkboxVal = false;
         this.user = new User(localStorage.getItem('email'));
         this.dbService.getUser(this.user)
             .subscribe(data => {
                 this.user.insuranceprovider = data.obj.insuranceprovider;
+                this.user.firstname = data.obj.firstname;
+                this.user.lastname = data.obj.lastname;
+                this.user.email = data.obj.email;
             },
             error => console.error(error));
 
