@@ -79,9 +79,14 @@ export class bookAppointmentComponent implements OnInit {
         this.format2 = this.formatDate(this.date2);
     }
 
-    test() {
-        var elem = (<HTMLInputElement>document.getElementById("myBtn")).value;
-        console.log(elem);
+    test(event) {
+        var target = event.target || event.srcElement || event.currentTarget;
+        var idAttr = target.attributes.id;
+        var value = idAttr.nodeValue;
+        //var property = <HTMLInputElement>document.getElementById(idAttr);
+        //property.style.backgroundColor = "black";
+        console.log(value);
+        console.log(idAttr);
     }
 
     ngOnInit() {

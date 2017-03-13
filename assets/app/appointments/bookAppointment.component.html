@@ -91,12 +91,12 @@
                         <tbody>
                             <tr>
                                 <td><strong>{{format1}}</strong></td>
-                                <td *ngFor="let entry of this.availability"><button *ngIf="entry.docdate == date1" class="btn btn-primary" (click)="test()" id="timeslot">
+                                <td *ngFor="let entry of this.availability"><button *ngIf="entry.docdate == date1" class="btn btn-primary" (click)="test($event)" id="{{date1}}-{{entry.doctime}}">
                                     {{entry.doctime}}</button></td>
                             </tr>
                             <tr>
                                 <td><strong>{{format2}}</strong></td>
-                                <td *ngFor="let entry of this.avail1"><button *ngIf="entry.docdate == date2" class="btn btn-primary" (click)="test()" id="timeslot">
+                                <td *ngFor="let entry of this.avail1"><button *ngIf="entry.docdate == date2" class="btn btn-primary" (click)="test($event)" id="{{entry.doctime}}">
                                     {{entry.doctime}}</button></td>
                             </tr>                            
                         </tbody>
