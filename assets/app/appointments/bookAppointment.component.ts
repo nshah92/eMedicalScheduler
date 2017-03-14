@@ -3,8 +3,10 @@ import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Doc } from '../profile/doc.model';
 import { User } from '../profile/user.model';
+import { Appointment } from '../profile/appointment.model';
 import { dbService } from '../service/db.service';
 import { DocService } from '../service/doc.service';
+import { AppointmentService } from '../service/appointment.service';
 import { Availability } from '../profile/availability.model';
 
 
@@ -23,6 +25,7 @@ import { Availability } from '../profile/availability.model';
 
 export class bookAppointmentComponent implements OnInit {
     @Input() doc: Doc;
+    appointment: Appointment;
 
     availability: Availability[];
     date1: any;
@@ -33,15 +36,16 @@ export class bookAppointmentComponent implements OnInit {
     avail1 = [];
     format1: any;
     format2: any;
-    datetime: any;
+    datetime: string;
     checkboxVal: boolean;
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
         private dbService: dbService,
-        private docService: DocService) {
-        this._route.queryParams.subscribe(params => {
+        private docService: DocService,
+        private appService: AppointmentService) {
 
+        this._route.queryParams.subscribe(params => {
             this.doc = new Doc(params["firstname"],
                 params["lastname"],
                 params["email"],
@@ -59,12 +63,29 @@ export class bookAppointmentComponent implements OnInit {
     }
 
     bookAppointment(form: NgForm) {
-        
-        this.checkboxVal = form.value.flex;
-        console.log("bookAppointment", this.doc.doclicense);
-        console.log("bookAppointment",this.datetime);
-        console.log("bookAppointment",this.checkboxVal);
-        console.log("bookAppointment",this.user.firstname);
+
+        var flexible = "False";
+        if (this.checkboxVal){
+            flexible = "True";
+        }
+
+        var dt: string [] = this.datetime.split('-');
+        var date = dt[0];
+        var time = dt[1];
+
+        const appointment = new Appointment (
+                            this.user.email,
+                            this.user.firstname,
+                            this.user.lastname,
+                            this.user.insuranceprovider,
+                            flexible,
+                            form.value.specialneed,
+                            form.value.reason,
+                            this.doc.doclicense,
+                            date,
+                            time);
+
+        console.log(appointment);
 
         //Need to make calls to MongoDB here
         //1. Insert into appointment collection
@@ -103,7 +124,7 @@ export class bookAppointmentComponent implements OnInit {
         //property.style.backgroundColor = "black";
         
         this.datetime = value;
-        console.log("onDateClick", this.datetime);
+        console.log(this.datetime);
     }
 
     ngOnInit() {

@@ -14,6 +14,7 @@ import { EqualValidator } from "./validators/equal-validator.directive";
 import { routing } from "./app.routing";
 import { dbService } from "./service/db.service"
 import { DocService } from "./service/doc.service"
+import { AppointmentService } from "./service/appointment.service";
 import { bookAppointmentComponent } from "./appointments/bookAppointment.component";
 
 
@@ -27,7 +28,7 @@ import { bookAppointmentComponent } from "./appointments/bookAppointment.compone
         MainPageComponent,
         ListDoctorComponent,
         EqualValidator,
-        bookAppointmentComponent
+        bookAppointmentComponent,
     ],
     imports: [  BrowserModule, 
                 routing,  
@@ -35,7 +36,8 @@ import { bookAppointmentComponent } from "./appointments/bookAppointment.compone
                 ReactiveFormsModule,
                 HttpModule ],
     providers: [    dbService,
-                    DocService ],
+                    DocService,
+                    AppointmentService ],
     bootstrap: [AppComponent]
 })
 
