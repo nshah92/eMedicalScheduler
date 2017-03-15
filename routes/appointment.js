@@ -1,8 +1,6 @@
 
 var express = require('express');
 var router = express.Router();
-var bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
 var Appointment = require('../models/appointment');
 
 router.post('/', function (req, res, next) {
@@ -22,12 +20,14 @@ router.post('/', function (req, res, next) {
         if (err) {
             return res.status(500).json({
                 title: 'Scheduling an Appointment failed',
-                error: err
+                error: err,
+                stat: res.statusCode
             });
         }
         res.status(201).json({
             message: 'Appointment was successful',
-            obj: result
+            obj: result,
+            stat: res.statusCode
         });
     });
 });

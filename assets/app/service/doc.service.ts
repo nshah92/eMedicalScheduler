@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 
 import { Doc } from '../profile/doc.model';
 import { Availability } from '../profile/availability.model';
+import { Appointment } from '../profile/appointment.model';
 import { LandingPage } from '../profile/landingpage.model';
 
 @Injectable()
@@ -41,7 +42,6 @@ export class DocService {
     }
 
     registerDocAvailability(availability: Availability){
-        //console.log("doc.service - Availability: ", availability);
         const body = JSON.stringify(availability);
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/docavailability', body, {headers: headers})
@@ -54,6 +54,12 @@ export class DocService {
                 return availability;
             })
             .catch((error: Response) => Observable.throw(console.log(error)));
+    }
+
+    deleteDocAvailability(appointment: Appointment) {
+        return this.http.delete('http://localhost:3000/docavailability/' + appointment.doclicense + '/' + appointment.date + '/' + appointment.time)
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));        
     }
 
     getDocLocation(lp: LandingPage) {

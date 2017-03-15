@@ -38,6 +38,7 @@ export class bookAppointmentComponent implements OnInit {
     format2: any;
     datetime: string;
     checkboxVal: boolean;
+    statusCode: number;
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
@@ -65,6 +66,7 @@ export class bookAppointmentComponent implements OnInit {
     bookAppointment(form: NgForm) {
 
         var flexible = "False";
+        this.checkboxVal = form.value.flexible;
         if (this.checkboxVal){
             flexible = "True";
         }
@@ -73,7 +75,7 @@ export class bookAppointmentComponent implements OnInit {
         var date = dt[0];
         var time = dt[1];
 
-        const appointment = new Appointment (
+        this.appointment = new Appointment (
                             this.user.email,
                             this.user.firstname,
                             this.user.lastname,
@@ -85,11 +87,29 @@ export class bookAppointmentComponent implements OnInit {
                             date,
                             time);
 
-        console.log(appointment);
+               this.appService.makeAppointment(this.appointment)
+                        .subscribe(
+                            data => {
+                                this.statusCode = data.stat;
+                                console.log(data)
+                                if (this.statusCode == 201) {
+                                    this.removeTimeSlot();
+                                }
+                            },
+                            error => {
+                                this.statusCode = error.stat;
+                                console.log(error)
+                            }
+                        )
 
-        //Need to make calls to MongoDB here
-        //1. Insert into appointment collection
-        //2. Update availability collection for the specific time with "-" or any other character
+    }
+
+    removeTimeSlot() {
+        this.docService.deleteDocAvailability (this.appointment)
+            .subscribe(
+                data => console.log(data),
+                error => console.log(error)
+            )
     }
 
     formatDate(date: any) {
@@ -120,11 +140,10 @@ export class bookAppointmentComponent implements OnInit {
         var target = event.target || event.srcElement || event.currentTarget;
         var idAttr = target.attributes.id;
         var value = idAttr.nodeValue;
-        //var property = <HTMLInputElement>document.getElementById(idAttr);
-        //property.style.backgroundColor = "black";
+        var property = <HTMLInputElement>document.getElementById(value);
+        property.style.backgroundColor = "black";
         
         this.datetime = value;
-        console.log(this.datetime);
     }
 
     ngOnInit() {

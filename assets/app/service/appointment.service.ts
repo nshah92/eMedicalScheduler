@@ -11,7 +11,7 @@ export class AppointmentService {
 
     constructor(private http: Http) {}
 
-    MakeAppointment(appointment: Appointment) {
+    makeAppointment(appointment: Appointment) {
         const body = JSON.stringify(appointment);
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/appointment', body, {headers: headers})
@@ -27,7 +27,7 @@ export class AppointmentService {
                                         result.obj.doclicense,
                                         result.obj.date,
                                         result.obj.time);
-                return appointment;
+                return result;
             })
             .catch((error: Response) => Observable.throw(console.log(error)));
     }

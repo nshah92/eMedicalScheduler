@@ -39,4 +39,35 @@ router.get('/', function(req,res,next){
     });
 });
 
+
+router.delete('/:doclicense/:date/:time', function(req, res, next){
+    Availability.findOne({doclicense: req.params.doclicense}, {date: req.params.date}, {time: req.params.time}, 
+     function(err, availability){
+        if (err){
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        if (!availability){
+            return res.status(500).json({
+                title: 'No Availability Found',
+                error: {availability: 'Availability not found'}
+            });
+        }
+        availability.remove(function(err, result){
+            if (err){
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(201).json({
+                message: 'Availability Deleted',
+                obj: result
+            });            
+        });
+    });    
+});
+
 module.exports = router;
