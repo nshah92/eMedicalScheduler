@@ -57,7 +57,16 @@ export class DocService {
     }
 
     deleteDocAvailability(appointment: Appointment) {
-        return this.http.delete('http://localhost:3000/docavailability/' + appointment.doclicense + '/' + appointment.date + '/' + appointment.time)
+        console.log("deleteDocAvailability: ",  appointment.doclicense);
+        console.log("deleteDocAvailability: ",  appointment.date);
+        console.log("deleteDocAvailability: ",  appointment.time);
+       
+        let params = new URLSearchParams();
+        params.set('doclicense',  appointment.doclicense);
+        params.set('docdate',  appointment.date);
+        params.set('doctime',  appointment.time);
+       
+        return this.http.delete('http://localhost:3000/docavailability', {search: params})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));        
     }

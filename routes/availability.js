@@ -40,8 +40,8 @@ router.get('/', function(req,res,next){
 });
 
 
-router.delete('/:doclicense/:date/:time', function(req, res, next){
-    Availability.findOne({doclicense: req.params.doclicense}, {date: req.params.date}, {time: req.params.time}, 
+router.delete('/', function(req, res, next){
+    Availability.findOne({doclicense: req.param('doclicense'), docdate: req.param('docdate'), doctime: req.param('doctime')}, 
      function(err, availability){
         if (err){
             return res.status(500).json({

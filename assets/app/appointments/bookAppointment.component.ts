@@ -87,7 +87,7 @@ export class bookAppointmentComponent implements OnInit {
                             date,
                             time);
 
-               this.appService.makeAppointment(this.appointment)
+               /*this.appService.makeAppointment(this.appointment)
                         .subscribe(
                             data => {
                                 this.statusCode = data.stat;
@@ -100,11 +100,13 @@ export class bookAppointmentComponent implements OnInit {
                                 this.statusCode = error.stat;
                                 console.log(error)
                             }
-                        )
-
+                        )*/
+             console.log("bookAppointment: Before calling removeTimeSlot()");
+             this.removeTimeSlot();
     }
 
     removeTimeSlot() {
+        console.log("removeTimeSlot: Before calling deleteDocAvailability()");
         this.docService.deleteDocAvailability (this.appointment)
             .subscribe(
                 data => console.log(data),
