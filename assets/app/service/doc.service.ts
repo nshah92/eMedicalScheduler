@@ -57,10 +57,6 @@ export class DocService {
     }
 
     deleteDocAvailability(appointment: Appointment) {
-        console.log("deleteDocAvailability: ",  appointment.doclicense);
-        console.log("deleteDocAvailability: ",  appointment.date);
-        console.log("deleteDocAvailability: ",  appointment.time);
-       
         let params = new URLSearchParams();
         params.set('doclicense',  appointment.doclicense);
         params.set('docdate',  appointment.date);
