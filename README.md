@@ -20,5 +20,6 @@
 5. Express -> npm install --save express
 6. Encryption -> npm install --save bcryptjs
 7. JSON Tokens -> npm install --save jsonwebtoken
+8. E-Mail -> npm install nodemailer
 
 PS. Install any missing dependencies using npm install --save \<missing library\>
