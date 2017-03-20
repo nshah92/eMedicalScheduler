@@ -94,6 +94,7 @@ export class bookAppointmentComponent implements OnInit {
                                 console.log(data)
                                 if (this.statusCode == 201) {
                                     this.removeTimeSlot();
+                                    this.sendEmailConfirmation();
                                 }
                             },
                             error => {
@@ -105,6 +106,14 @@ export class bookAppointmentComponent implements OnInit {
 
     removeTimeSlot() {
         this.docService.deleteDocAvailability (this.appointment)
+            .subscribe(
+                data => console.log(data),
+                error => console.log(error)
+            )
+    }
+
+    sendEmailConfirmation(){
+        this.appService.sendEmail(this.appointment)
             .subscribe(
                 data => console.log(data),
                 error => console.log(error)

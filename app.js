@@ -10,6 +10,7 @@ var userRoutes = require('./routes/user');
 var docRoutes = require('./routes/doc');
 var docAvailabilityRoutes = require('./routes/availability');
 var appointRoutes = require('./routes/appointment');
+var emailRoutes = require('./routes/email');
 var mongoose = require('mongoose');
 
 var app = express();
@@ -39,6 +40,7 @@ app.use('/userreg', userRoutes);
 app.use('/docreg', docRoutes);
 app.use('/docavailability', docAvailabilityRoutes);
 app.use('/appointment', appointRoutes);
+app.use('/confirmation', emailRoutes);
 app.use('/', appRoutes);
 
 

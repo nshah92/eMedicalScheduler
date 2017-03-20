@@ -32,6 +32,14 @@ export class AppointmentService {
             .catch((error: Response) => Observable.throw(console.log(error)));
     }
 
+    sendEmail(appointment: Appointment){
+        const body = JSON.stringify(appointment);
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.post('http://localhost:3000/confirmation', body, {headers: headers})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(console.log(error)));
+    }
+
     fetchAppointments(appointment: Appointment) {
         return this.http.get('http://localhost:3000/appointment/' + appointment.patientemail)
             .map((response: Response) => {
