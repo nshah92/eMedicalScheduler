@@ -16,6 +16,7 @@ import { dbService } from "./service/db.service"
 import { DocService } from "./service/doc.service"
 import { AppointmentService } from "./service/appointment.service";
 import { bookAppointmentComponent } from "./appointments/bookAppointment.component";
+import { manageAppointmentComponent } from "./appointments/manageAppointment";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { bookAppointmentComponent } from "./appointments/bookAppointment.compone
         ListDoctorComponent,
         EqualValidator,
         bookAppointmentComponent,
+        manageAppointmentComponent,
     ],
     imports: [  BrowserModule, 
                 routing,  

@@ -6,8 +6,8 @@ var Appointment = require('../models/appointment');
 router.post('/', function (req, res, next) {
     var appointment = new Appointment ({
         patientemail: req.body.patientemail, 
-        patientfirstname: req.body.patientfirstname,
-        patientlastname: req.body.patientlastname,
+        docfirstname: req.body.docfirstname,
+        doclastname: req.body.doclastname,
         patientinsurance: req.body.patientinsurance,
         patientflexibility: req.body.patientflexibility,
         patientspecialneed: req.body.patientspecialneed,
@@ -29,6 +29,23 @@ router.post('/', function (req, res, next) {
             obj: result,
             stat: res.statusCode
         });
+    });
+});
+
+router.get('/:patientemail', function(req, res, next) {
+    Appointment.find({patientemail: req.params.patientemail}, function (err, schedule){
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err,
+                stat: res.statusCode
+            });
+        }
+        res.status(200).json({
+            message: 'fetch appointment Successful',
+            obj: schedule,
+            stat: res.statusCode
+        });                
     });
 });
 

@@ -50,6 +50,6 @@ router.get('/', function (req, res, next) {
                 obj: docs
             });
         });
-});
+}); 
 
 module.exports = router;

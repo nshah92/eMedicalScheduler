@@ -1,0 +1,33 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <img class="img-responsive center-block" src="http://www.maplytics.com/wp-content/uploads/2014/10/Never-Miss-Any-Appointment.jpg" 
+        alt="Manage-Appointment">
+    </div>
+</div>
+<hr/>
+
+<div *ngIf="this.appointmentAvailable <= 0">
+    <h2>No Future Appointments</h2>
+</div>
+
+<article class="panel panel-default" *ngFor="let appointment of this.appointments">
+    <div class="panel-body">
+        Doctor {{ appointment.doclastname }} | 12:00PM | March 20, 2017
+    </div>
+    <footer class="panel-footer">
+        <div class="author">
+            Reason for Visit: xxx xxx xxx xxx xxx xxx xxx xxx
+            <br/>
+            Special Need: Wheel Chair
+            <br/>
+            Flexible: False
+            <br/>
+            Venue: 
+        </div>
+        <div class="config">
+            <a href="#" (click)="cancelAppointment()">Cancel Appointment</a>
+        </div>
+    </footer>
+</article>
+
