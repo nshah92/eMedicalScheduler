@@ -4,7 +4,7 @@ var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 var schema = new Schema({
     patientemail: {type: String, required: true},
-    doclastname: {type: String, required: true},
+    docfirstname: {type: String, required: true},
     doclastname: {type: String, required: true},
     patientinsurance: {type: String, required: true},
     patientflexibility: {type: String, required: true},
