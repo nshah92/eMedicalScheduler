@@ -11,6 +11,7 @@ var docRoutes = require('./routes/doc');
 var docAvailabilityRoutes = require('./routes/availability');
 var appointRoutes = require('./routes/appointment');
 var emailRoutes = require('./routes/email');
+var welcomeRoutes = require('./routes/welcome');
 var mongoose = require('mongoose');
 
 var app = express();
@@ -41,6 +42,7 @@ app.use('/docreg', docRoutes);
 app.use('/docavailability', docAvailabilityRoutes);
 app.use('/appointment', appointRoutes);
 app.use('/confirmation', emailRoutes);
+app.use('/welcome', welcomeRoutes);
 app.use('/', appRoutes);
 
 
