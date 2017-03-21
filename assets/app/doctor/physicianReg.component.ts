@@ -33,7 +33,7 @@ export class PhysicianRegComponent {
 
         this.docService.registerDoc(doc)
             .subscribe(
-                data => console.log(data),
+                data => {data},
                 error => console.error(error)
             );
 
@@ -76,14 +76,14 @@ export class PhysicianRegComponent {
                      this.availability = new Availability(form.value.doclicense, currentDate, date[j].toString());
                      this.docService.registerDocAvailability(this.availability)
                         .subscribe(
-                            data => console.log(data),
+                            data => {data},
                             error => console.error(error)
                         );
                  } else{
                      this.availability = new Availability(form.value.doclicense, followingday, date[j].toString());
                      this.docService.registerDocAvailability(this.availability)
                         .subscribe(
-                            data => console.log(data),
+                            data => {data},
                             error => console.error(error)
                         );
                  }

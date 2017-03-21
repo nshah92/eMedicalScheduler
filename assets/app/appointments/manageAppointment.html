@@ -7,26 +7,27 @@
 </div>
 <hr/>
 
-<div *ngIf="this.appointmentAvailable <= 0">
+<div *ngIf="this.appointments.length <= 0">
     <h2>No Future Appointments</h2>
 </div>
 
 <article class="panel panel-default" *ngFor="let appointment of this.appointments">
     <div class="panel-body">
-        Doctor {{ appointment.doclastname }} | 12:00PM | March 20, 2017
+        Doctor {{ appointment.doclastname }} {{ appointment.docfirstname }} | {{ appointment.time }} | {{ appointment.date }}
     </div>
     <footer class="panel-footer">
         <div class="author">
-            Reason for Visit: xxx xxx xxx xxx xxx xxx xxx xxx
+            Reason for Visit: {{ appointment.patientreason }}
             <br/>
-            Special Need: Wheel Chair
+            Special Need: {{ appointment.patientspecialneed }}
             <br/>
-            Flexible: False
+            Flexible: {{ appointment.patientflexibility }}
             <br/>
-            Venue: 
+            Clinic:  
         </div>
         <div class="config">
-            <a href="#" (click)="cancelAppointment()">Cancel Appointment</a>
+            <a (click)="cancelAppointment($event)" id="{{appointment.doclicense}}-{{appointment.date}}-{{appointment.time}}">
+                Cancel Appointment</a>
         </div>
     </footer>
 </article>

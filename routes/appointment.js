@@ -49,4 +49,38 @@ router.get('/:patientemail', function(req, res, next) {
     });
 });
 
+router.delete('/', function(req, res, next){
+    Appointment.findOne({patientemail: req.param('email'), doclicense: req.param('doclicense'), date: req.param('date'), time: req.param('time')}, 
+     function(err, appointment){
+        if (err){
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err,
+                stat: res.statusCode
+            });
+        }
+        if (!appointment){
+            return res.status(500).json({
+                title: 'No Appointment Found',
+                error: {appointment: 'Appointment not found'},
+                stat: res.statusCode
+            });
+        }
+        appointment.remove(function(err, result){
+            if (err){
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err,
+                    stat: res.statusCode
+                });
+            }
+            res.status(201).json({
+                message: 'Appointment Deleted',
+                obj: result,
+                stat: res.statusCode
+            });            
+        });
+    });    
+});
+
 module.exports = router;

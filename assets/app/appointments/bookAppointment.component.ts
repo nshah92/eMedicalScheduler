@@ -91,10 +91,9 @@ export class bookAppointmentComponent implements OnInit {
                         .subscribe(
                             data => {
                                 this.statusCode = data.stat;
-                                console.log(data)
                                 if (this.statusCode == 201) {
                                     this.removeTimeSlot();
-                                    this.sendEmailConfirmation();
+                                    //this.sendEmailConfirmation();
                                 }
                             },
                             error => {
@@ -107,7 +106,7 @@ export class bookAppointmentComponent implements OnInit {
     removeTimeSlot() {
         this.docService.deleteDocAvailability (this.appointment)
             .subscribe(
-                data => console.log(data),
+                data => {data},
                 error => console.log(error)
             )
     }
@@ -115,7 +114,7 @@ export class bookAppointmentComponent implements OnInit {
     sendEmailConfirmation(){
         this.appService.sendEmail(this.appointment)
             .subscribe(
-                data => console.log(data),
+                data => {data},
                 error => console.log(error)
             )
     }

@@ -64,4 +64,15 @@ export class AppointmentService {
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
+
+    deleteAppointment(appointment: Appointment) {
+        let params = new URLSearchParams();
+        params.set('email', appointment.patientemail);
+        params.set('doclicense',  appointment.doclicense);
+        params.set('date',  appointment.date);
+        params.set('time',  appointment.time);
+       return this.http.delete('http://localhost:3000/appointment', {search: params})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(console.log(error)));        
+    }    
 }
