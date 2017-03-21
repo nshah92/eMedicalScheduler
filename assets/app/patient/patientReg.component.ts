@@ -11,13 +11,14 @@ import { dbService } from '../service/db.service';
 
 export class PatientRegComponent implements OnInit {
     user: User;
+    statusCode: number;
 
     constructor(private dbService: dbService, private router: Router) { }
 
     registerPatient(form: NgForm) {
 
         if (!this.dbService.isLoggedIn()) {
-            const user = new User(form.value.email, 
+            this.user = new User(form.value.email, 
                                 form.value.password, 
                                 form.value.firstname,
                                 form.value.lastname, 
@@ -26,9 +27,17 @@ export class PatientRegComponent implements OnInit {
                                 form.value.selectinsurance, 
                                 form.value.allergies);
 
-            this.dbService.registerUser(user)
+            this.dbService.registerUser(this.user)
                 .subscribe(
-                    data => console.log(data),
+                    data => {
+                        console.log(data);
+                        this.statusCode = data.stat;
+                        console.log("Status Code: " + this.statusCode);
+                        /*if (this.statusCode == 201) {
+                            this.sendRegistrationConfirmation();
+                        }*/
+                        this.sendRegistrationConfirmation();
+                    },
                     error => console.error(error)
             );
             form.resetForm();
@@ -48,6 +57,14 @@ export class PatientRegComponent implements OnInit {
         }
         this.router.navigateByUrl('/home');
     }
+
+     sendRegistrationConfirmation(){
+         this.dbService.sendEmail(this.user)
+            .subscribe(
+                data => console.log(data),
+                error => console.log(error)
+            )
+     }
     
     ngOnInit() {
 

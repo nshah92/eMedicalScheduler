@@ -19,12 +19,14 @@ router.post('/', function (req, res, next) {
         if (err) {
             return res.status(500).json({
                 title: 'User Registration failed',
-                error: err
+                error: err,
+                stat: res.statusCode
             });
         }
         res.status(201).json({
             message: 'User registration succesful',
-            obj: result
+            obj: result,
+            stat: res.statusCode
         });
     });
 });
