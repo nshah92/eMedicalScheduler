@@ -14,9 +14,7 @@ import { dbService } from '../../service/db.service'
 export class ListDoctorComponent {
     @Input() doc: Doc;
     
-    constructor(private _route: ActivatedRoute, private _router: Router, private dbService: dbService){
-       //console.log("ListDoctorComponent",this.doc.docaddress);
-    }
+    constructor(private _route: ActivatedRoute, private _router: Router, private dbService: dbService){}
 
     onBook(form: NgForm): void{
 

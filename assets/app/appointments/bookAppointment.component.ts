@@ -39,6 +39,8 @@ export class bookAppointmentComponent implements OnInit {
     datetime: string;
     checkboxVal: boolean;
     statusCode: number;
+    error: boolean = false;
+    success: boolean = false;
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
@@ -64,7 +66,8 @@ export class bookAppointmentComponent implements OnInit {
     }
 
     bookAppointment(form: NgForm) {
-
+        this.error = false;
+        this.success = false;
         var flexible = "False";
         this.checkboxVal = form.value.flexible;
         if (this.checkboxVal){
@@ -100,11 +103,13 @@ export class bookAppointmentComponent implements OnInit {
                                     )
                                     this.availability.splice(this.availability.indexOf(availability, 1));
                                     this.avail1.splice(this.avail1.indexOf(availability, 1));
-                                    //this.sendEmailConfirmation();
+                                    this.success = true;
+                                    this.sendEmailConfirmation();
                                 }
                             },
                             error => {
                                 this.statusCode = error.stat;
+                                this.error = true;
                                 console.log(error)
                             }
                         )
@@ -127,15 +132,17 @@ export class bookAppointmentComponent implements OnInit {
     }
 
     formatDate(date: any) {
-        var Myear: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-        var date_array = date.split('/')
-        var day;
-        if (date_array[1] < 10){
-            day = '0' + date_array[1];
-        }else{
-            day = date_array[1];
+        if (date) {
+            var Myear: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+            var date_array = date.split('/')
+            var day;
+            if (date_array[1] < 10){
+                day = '0' + date_array[1];
+            }else{
+                day = date_array[1];
+            }
+            return Myear[date_array[0]-1] + " " + day + ", " + date_array[2];
         }
-        return Myear[date_array[0]-1] + " " + day + ", " + date_array[2];
     }
 
     getAvailabiityDate() {

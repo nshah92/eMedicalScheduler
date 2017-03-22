@@ -127,7 +127,7 @@ export class manageAppointmentComponent implements OnInit {
                                         );
                                 this.docService.registerDocAvailability(availability)
                                     .subscribe(
-                                        data => console.log (data),
+                                        data => { data},
                                         error => console.log (error)
                                     );
                             }

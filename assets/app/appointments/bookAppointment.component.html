@@ -97,13 +97,13 @@
                             <th>Availability</th>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngIf="format1 != null"> 
                                 <td><strong>{{format1}}</strong></td>
                                 <td *ngFor="let entry of this.availability"><button *ngIf="entry.docdate == date1" class="btn btn-primary" (click)="onDateClick($event)"
                                         id="{{entry.docdate}}-{{entry.doctime}}">
                                     {{entry.doctime}}</button></td>
                             </tr>
-                            <tr>
+                            <tr *ngIf="format2 != null">
                                 <td><strong>{{format2}}</strong></td>
                                 <td *ngFor="let entry of this.avail1"><button *ngIf="entry.docdate == date2" class="btn btn-primary" (click)="onDateClick($event)"
                                         id="{{entry.docdate}}-{{entry.doctime}}">
@@ -120,6 +120,12 @@
                 <div class="form-group">
                     <button class="btn dd" (click)="bookAppointment(b)" [disabled]="!b.valid">Make Appointment</button>
                 </div>
+                <div class="alert alert-danger" *ngIf="this.error">
+                    <strong>Error!!!</strong> Appointment Booking Failed.
+                </div> 
+                <div class="alert alert-info" *ngIf="this.success">
+                    Appointment reservation was successful.
+                </div>                 
             </div>
         </div>
     </div>

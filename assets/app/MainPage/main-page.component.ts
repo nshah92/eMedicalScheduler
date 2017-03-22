@@ -61,7 +61,6 @@ export class MainPageComponent
     getLatLng(){
         
         if(this.docs.length !== 0){
-            console.log("getLatLng: docs in the location", this.location);
             this.docFlag = true;
 
             for (let doc of this.docs) {
@@ -75,7 +74,6 @@ export class MainPageComponent
                 )
             }
         } else {
-            console.log("getLatLng: No docs in the location: ", this.location);
             this.docFlag = false;
             
             this.docService.getMarkerPosition("", "", this.location)
@@ -87,8 +85,6 @@ export class MainPageComponent
                     error => console.log(error)
                 )
         }
-              
-        console.log("getLatLng: ", this.docs);
     }
 
     populateMarkers(lat:String, lng:String){

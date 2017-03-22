@@ -18,7 +18,7 @@ router.post('/', function (req, res, next) {
     user.save(function (err, result) {
         if (err) {
             return res.status(500).json({
-                title: 'User Registration failed',
+                message: 'User Registration failed',
                 error: err,
                 stat: res.statusCode
             });

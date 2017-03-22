@@ -17,13 +17,13 @@
     </div>
     <footer class="panel-footer">
         <div class="author">
-            Reason for Visit: {{ appointment.patientreason }}
+            <strong>Reason for Visit:</strong> {{ appointment.patientreason }}
             <br/>
-            Special Need: {{ appointment.patientspecialneed }}
+            <strong>Special Need:</strong> {{ appointment.patientspecialneed }}
             <br/>
-            Flexible: {{ appointment.patientflexibility }}
+            <strong>Flexible:</strong> {{ appointment.patientflexibility }}
             <br/>
-            Clinic:  
+            <strong>Clinic:</strong> 
         </div>
         <div class="config">
             <a (click)="cancelAppointment($event)" id="{{appointment.doclicense}}-{{appointment.date}}-{{appointment.time}}">

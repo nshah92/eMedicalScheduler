@@ -12,7 +12,6 @@ export class dbService {
     constructor(private http: Http) {}
 
     registerUser(user: User) {
-        console.log("User:",user);
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/userreg', body, {headers: headers})

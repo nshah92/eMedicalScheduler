@@ -94,6 +94,12 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4 alert alert-danger" *ngIf="this.error">
+            <strong>Error!!!</strong> {{this.errormsg}}
+        </div>       
+    </div>
+
     <!--Sign Up Button-->
     <div class="row">
         <div class="col-md-6 col-md-offset-4">

@@ -19,7 +19,7 @@ router.post('/', function (req, res, next) {
         }
     });
     
-    var text = 'Hello, \n\n You have a booking for ' + docFirstName + ' ' + docLastName + 
+    var text = 'Hello, \n\n You have an appointment with Doctor ' + docFirstName + ' ' + docLastName + 
     '.\nReason - ' + patientReason + '.\nDate & Time - ' + patientDate + ', ' + patientTime + 
     '\n\nThank You.\nE-Medical Scheduler';
     var mailOptions = {

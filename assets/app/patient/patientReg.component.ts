@@ -12,11 +12,14 @@ import { dbService } from '../service/db.service';
 export class PatientRegComponent implements OnInit {
     user: User;
     statusCode: number;
+    error: boolean = false;
+    response: any;
+    errormsg: string;
 
     constructor(private dbService: dbService, private router: Router) { }
 
     registerPatient(form: NgForm) {
-
+        this.error = false;
         if (!this.dbService.isLoggedIn()) {
             this.user = new User(form.value.email, 
                                 form.value.password, 
@@ -30,15 +33,17 @@ export class PatientRegComponent implements OnInit {
             this.dbService.registerUser(this.user)
                 .subscribe(
                     data => {
-                        console.log(data);
+                        this.response = data;
                         this.statusCode = data.stat;
-                        console.log("Status Code: " + this.statusCode);
-                        /*if (this.statusCode == 201) {
-                            this.sendRegistrationConfirmation();
-                        }*/
                         this.sendRegistrationConfirmation();
+                        this.router.navigateByUrl('/home');
                     },
-                    error => console.error(error)
+                    error => { 
+                        this.error = true;
+                        this.errormsg = "User Registeration Failed!!!"
+                        console.log ("this.error is true");
+                        console.log (this.error);
+                    }
             );
             form.resetForm();
         }else{
@@ -51,17 +56,19 @@ export class PatientRegComponent implements OnInit {
             this.user.allergies = form.value.allergies;
             this.dbService.updateUser(this.user)
                 .subscribe(
-                    data => console.log (data),
-                    error => console.error(error)
+                    data => {this.router.navigateByUrl('/home');},
+                    error => {
+                        this.error = true;
+                        this.errormsg = "Unable to Update User Profile!!!"
+                    }
                 )
         }
-        this.router.navigateByUrl('/home');
     }
 
      sendRegistrationConfirmation(){
          this.dbService.sendEmail(this.user)
             .subscribe(
-                data => console.log(data),
+                data => {data},
                 error => console.log(error)
             )
      }
