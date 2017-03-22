@@ -120,7 +120,16 @@ export class manageAppointmentComponent implements OnInit {
                         if (data.obj.date == date && data.obj.time == time && data.obj.doclicense == app.doclicense) {
                             this.appointments.splice(this.appointments.indexOf(app), 1);
                             if (data.stat == 201) {
-                                
+                                const availability = new Availability (
+                                            app.doclicense,
+                                            date,
+                                            time
+                                        );
+                                this.docService.registerDocAvailability(availability)
+                                    .subscribe(
+                                        data => console.log (data),
+                                        error => console.log (error)
+                                    );
                             }
                         }
                     }

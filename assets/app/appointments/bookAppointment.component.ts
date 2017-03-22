@@ -93,6 +93,13 @@ export class bookAppointmentComponent implements OnInit {
                                 this.statusCode = data.stat;
                                 if (this.statusCode == 201) {
                                     this.removeTimeSlot();
+                                    const availability = new Availability (
+                                                            date,
+                                                            this.doc.doclicense,
+                                                            time
+                                    )
+                                    this.availability.splice(this.availability.indexOf(availability, 1));
+                                    this.avail1.splice(this.avail1.indexOf(availability, 1));
                                     //this.sendEmailConfirmation();
                                 }
                             },

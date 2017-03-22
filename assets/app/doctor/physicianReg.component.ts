@@ -73,14 +73,20 @@ export class PhysicianRegComponent {
 
              for(let j = 0; j < 5; j++){
                  if(i == 0){
-                     this.availability = new Availability(form.value.doclicense, currentDate, date[j].toString());
+                    this.availability = new Availability(form.value.doclicense, currentDate, date[j].toString());
+                    if (this.availability.doctime.length <= 3){
+                         this.availability.doctime = "0" + this.availability.doctime;
+                     }
                      this.docService.registerDocAvailability(this.availability)
                         .subscribe(
                             data => {data},
                             error => console.error(error)
                         );
                  } else{
-                     this.availability = new Availability(form.value.doclicense, followingday, date[j].toString());
+                    this.availability = new Availability(form.value.doclicense, followingday, date[j].toString());
+                    if (this.availability.doctime.length <= 3){
+                         this.availability.doctime = "0" + this.availability.doctime;
+                     }
                      this.docService.registerDocAvailability(this.availability)
                         .subscribe(
                             data => {data},

@@ -17,7 +17,6 @@ export class DocService {
     location: String;
 
     registerDoc(doc: Doc) {
-        //console.log("doc.service - Doc:",doc);
         const body = JSON.stringify(doc);
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/docreg', body, {headers: headers})
@@ -115,7 +114,6 @@ export class DocService {
    }
 
    getTime(doc: Doc) {
-       console.log("In Gettime method", doc.doclicense);
        let params = new URLSearchParams();
         params.set('doclicense', doc.doclicense);
 
