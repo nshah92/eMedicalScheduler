@@ -80,13 +80,20 @@ export class bookAppointmentComponent implements OnInit {
 
         this.appointment = new Appointment (
                             this.user.email,
-                            this.doc.docfirstname,
-                            this.doc.doclastname,
+                            this.user.firstname,
+                            this.user.lastname,
                             this.user.insuranceprovider,
                             flexible,
                             form.value.specialneed,
                             form.value.reason,
                             this.doc.doclicense,
+                            this.doc.docfirstname,
+                            this.doc.doclastname,
+                            this.doc.docclinicname,
+                            this.doc.docaddress,
+                            this.doc.doccity,
+                            this.doc.docpostalcode,
+                            this.doc.docprovince,
                             date,
                             time);
 

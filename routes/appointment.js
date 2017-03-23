@@ -6,13 +6,20 @@ var Appointment = require('../models/appointment');
 router.post('/', function (req, res, next) {
     var appointment = new Appointment ({
         patientemail: req.body.patientemail, 
-        docfirstname: req.body.docfirstname,
-        doclastname: req.body.doclastname,
+        patientfirstname: req.body.patientfirstname,
+        patientlastname: req.body.patientlastname,
         patientinsurance: req.body.patientinsurance,
         patientflexibility: req.body.patientflexibility,
         patientspecialneed: req.body.patientspecialneed,
         patientreason: req.body.patientreason,
         doclicense: req.body.doclicense,
+        docfirstname: req.body.docfirstname,
+        doclastname: req.body.doclastname,
+        docclinicname: req.body.docclinicname,
+        docaddress: req.body.docaddress,
+        doccity: req.body.doccity,
+        docpostalcode: req.body.docpostalcode,
+        docprovince: req.body.docprovince,
         date: req.body.date,
         time: req.body.time,
     });

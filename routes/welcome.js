@@ -16,7 +16,7 @@ router.post('/', function (req, res, next) {
         }
     });
     
-    var text = 'Hello ' + userFirstName + ' ' + userLastName + ', \n\nWelcome to E-Medical Scheduler. The premiere scheduling application for' 
+    var text = 'Hello ' + userFirstName + ' ' + userLastName + ', \n\nWelcome to E-Medical Scheduler.\n\nThe premiere scheduling application for' 
     + ' healthcare. You can edit your personal information on the platform by selecting \'Edit Profile\'.' +
     '\n\nThank You.\nE-Medical Scheduler';
     var mailOptions = {
