@@ -41,6 +41,7 @@ export class bookAppointmentComponent implements OnInit {
     statusCode: number;
     error: boolean = false;
     success: boolean = false;
+    property = null;
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
@@ -165,12 +166,19 @@ export class bookAppointmentComponent implements OnInit {
     }
 
     onDateClick(event) {
+
         var target = event.target || event.srcElement || event.currentTarget;
         var idAttr = target.attributes.id;
         var value = idAttr.nodeValue;
-        var property = <HTMLInputElement>document.getElementById(value);
-        property.style.backgroundColor = "black";
-        
+        /*var property = <HTMLInputElement>document.getElementById(value);
+        property.style.backgroundColor = "black";*/
+
+        if (this.property != null) {
+            this.property.style.backgroundColor = "#428bca";
+        }
+        this.property = <HTMLInputElement>document.getElementById(value);
+        this.property.style.backgroundColor = "black";
+
         this.datetime = value;
     }
 
