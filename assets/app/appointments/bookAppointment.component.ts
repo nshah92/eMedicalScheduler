@@ -111,16 +111,14 @@ export class bookAppointmentComponent implements OnInit {
                                                             date,
                                                             time
                                     )
-                                    //console.log (this.availability.indexOf(availability))
-                                    //this.availability.splice(this.availability.indexOf(availability, 1));
-                                    var cc = this.avail1.indexOf(availability);
-                                    console.log (cc);
-                                    if (cc > 0) {
-                                        
+                                    var ccc = this.deepIndexOf(this.availability, availability);
+                                    if (ccc > 0) {
+                                        this.avail1.splice(ccc, 1);
                                     }
-                                    console.log (this.avail1);
-                                    console.log (availability);
-                                    //this.avail1.splice(this.avail1.indexOf(availability, 1));
+                                    var cc = this.deepIndexOf(this.avail1, availability);
+                                    if (cc > 0) {
+                                        this.avail1.splice(cc, 1);
+                                    }
                                     this.success = true;
                                     var d = this.appointment.date;
                                     d = d.replace("/", "");
@@ -155,6 +153,14 @@ export class bookAppointmentComponent implements OnInit {
                             }
                         )
     }
+
+    deepIndexOf(arr, obj) {
+  return arr.findIndex(function (cur) {
+    return Object.keys(obj).every(function (key) {
+      return obj[key] === cur[key];
+    });
+  });
+}
 
     removeTimeSlot() {
         this.docService.deleteDocAvailability (this.appointment)
