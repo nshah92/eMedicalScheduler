@@ -6,7 +6,7 @@ import { Doc } from '../profile/doc.model';
 import { AppointmentService } from '../service/appointment.service';
 import { Appointment } from '../profile/appointment.model';
 import { Availability } from '../profile/availability.model';
-
+import { Flexible } from '../profile/flexible.model';
 
 @Component({
     selector: 'es-ManageAppointment',
@@ -31,9 +31,12 @@ export class manageAppointmentComponent implements OnInit {
     patientemail: string;
     appointment: Appointment;
     appointments: Appointment[] = [];
+    flex: Flexible;
+    dbflexApp: Flexible[] = [];
     appointmentAvailable: number;
     doclicense: string;
     time: string;
+    datetime: number;
 
     constructor(private appService: AppointmentService, 
                 private router: Router,
@@ -127,14 +130,72 @@ export class manageAppointmentComponent implements OnInit {
                                         );
                                 this.docService.registerDocAvailability(availability)
                                     .subscribe(
-                                        data => { data},
+                                        data => { data },
                                         error => console.log (error)
                                     );
+                                this.cancelFlexibleAppointment(app);
                             }
                         }
                     }
                  },
                 error => console.log(error)
+            );
+    }
+
+    cancelFlexibleAppointment (app: Appointment) {
+        if (app.patientflexibility == "True") {
+            var date = this.deFormatDate(app.date);
+            var time = app.time.replace(":", "");
+            const flexible = new Flexible (
+                    app.patientemail,
+                    "",
+                    "",
+                    date,
+                    time,
+                    0,
+                    app.doclicense,
+                    app.doclastname
+            )
+            this.appService.deleteFlexibleAppointment(flexible)
+                    .subscribe(
+                        data => { 
+                            this.flex = data.obj 
+                            this.datetime = this.flex.datetime;
+                        },
+                        error => console.log (error)
+                    );
+        }
+        this.emailFlexibleAvailability(app);
+    }
+
+    //Email patient with flexible appointmennts
+    emailFlexibleAvailability(app: Appointment) {
+        this.appService.getAllFlexibleAppointments()
+            .subscribe(
+                (flexibleAppoints: Flexible []) => {
+                        this.dbflexApp = flexibleAppoints;
+                        if (this.dbflexApp) {                   
+                        //determine the earliest of the bunch to email, provided it is the same doctor
+                        for (let flexApp of this.dbflexApp) {
+                            if ((flexApp.datetime > this.datetime) && 
+                                (flexApp.doclicense == this.flex.doclicense)){
+                                    flexApp.date = app.date;
+                                    flexApp.time = app.time;
+                                    this.sendFlexEmail(flexApp);
+                                    return;
+                                }
+                            }
+                        }
+                },
+                error => console.log (error)
+        );
+    }
+
+    sendFlexEmail(flexApp: Flexible) {
+        this.appService.sendFlexEmail(flexApp)
+            .subscribe(
+                data => {data},
+                error => {console.log (error) }
             );
     }
 }

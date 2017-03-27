@@ -8,6 +8,7 @@ import { dbService } from '../service/db.service';
 import { DocService } from '../service/doc.service';
 import { AppointmentService } from '../service/appointment.service';
 import { Availability } from '../profile/availability.model';
+import { Flexible } from '../profile/flexible.model';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class bookAppointmentComponent implements OnInit {
     statusCode: number;
     error: boolean = false;
     success: boolean = false;
+    dttime: number;
 
     constructor(private _route: ActivatedRoute,
         private _router: Router,
@@ -68,10 +70,10 @@ export class bookAppointmentComponent implements OnInit {
     bookAppointment(form: NgForm) {
         this.error = false;
         this.success = false;
-        var flexible = "False";
+        var flexibleApp = "False";
         this.checkboxVal = form.value.flexible;
         if (this.checkboxVal){
-            flexible = "True";
+            flexibleApp = "True";
         }
 
         var dt: string [] = this.datetime.split('-');
@@ -83,7 +85,7 @@ export class bookAppointmentComponent implements OnInit {
                             this.doc.docfirstname,
                             this.doc.doclastname,
                             this.user.insuranceprovider,
-                            flexible,
+                            flexibleApp,
                             form.value.specialneed,
                             form.value.reason,
                             this.doc.doclicense,
@@ -97,13 +99,44 @@ export class bookAppointmentComponent implements OnInit {
                                 if (this.statusCode == 201) {
                                     this.removeTimeSlot();
                                     const availability = new Availability (
-                                                            date,
                                                             this.doc.doclicense,
+                                                            date,
                                                             time
                                     )
-                                    this.availability.splice(this.availability.indexOf(availability, 1));
-                                    this.avail1.splice(this.avail1.indexOf(availability, 1));
+                                    //console.log (this.availability.indexOf(availability))
+                                    //this.availability.splice(this.availability.indexOf(availability, 1));
+                                    var cc = this.avail1.indexOf(availability);
+                                    console.log (cc);
+                                    if (cc > 0) {
+                                        
+                                    }
+                                    console.log (this.avail1);
+                                    console.log (availability);
+                                    //this.avail1.splice(this.avail1.indexOf(availability, 1));
                                     this.success = true;
+                                    var d = this.appointment.date;
+                                    d = d.replace("/", "");
+                                    d = d.replace("/", "");
+                                    d = d + this.appointment.time;
+                                    this.dttime = Number(d);
+                                    const flexible = new Flexible (
+                                                        this.user.email,
+                                                        this.user.firstname,
+                                                        this.user.lastname,
+                                                        this.appointment.date,
+                                                        availability.doctime,
+                                                        this.dttime,
+                                                        this.appointment.doclicense,
+                                                        this.appointment.doclastname
+                                    )
+
+                                    if (flexibleApp == "True") {
+                                        this.appService.writeFlexibleAppointment(flexible)
+                                            .subscribe(
+                                                data => data,
+                                                error => error
+                                            )
+                                    }
                                     this.sendEmailConfirmation();
                                 }
                             },

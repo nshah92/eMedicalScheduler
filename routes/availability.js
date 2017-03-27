@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
 var Availability = require('../models/availability');
 
 router.post('/', function (req, res, next) {
