@@ -1,55 +1,53 @@
-
-<h3>Personal Information</h3>
+<h3>
+    Personal Information</h3>
 <form class="form-horizontal" (ngSubmit)="registerDoctor(f)" #f="ngForm">
-    
+
     <!--First Name and Last Name-->
     <div class="form-group">
         <div class="col-md-6">
             <label class="control-label" for="docfirstname">First Name</label>
-            <input type="text" class="form-control" id="docfirstname"
-            [ngModel]="doc?.docfirstname" name="docfirstname" required>
+            <input type="text" class="form-control" id="docfirstname" [ngModel]="doc?.docfirstname" name="docfirstname" required>
         </div>
         <div class="col-md-6">
             <label class="control-label" for="doclastname">Last Name</label>
-            <input type="text" class="form-control" id="doclastname"
-            [ngModel]="doc?.doclastname" name="doclastname" required>
-        </div>       
-    </div>   
+            <input type="text" class="form-control" id="doclastname" [ngModel]="doc?.doclastname" name="doclastname" required>
+        </div>
+    </div>
 
     <!--Email and Password-->
     <div class="form-group">
         <div class="col-md-6">
             <label class="control-label" for="docemail">Email</label>
-            <input type="email" [ngModel]="doc?.docemail" name="docemail" class="form-control" id="docemail" 
-            pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" #docemail="ngModel" required>
+            <input type="email" [ngModel]="doc?.docemail" name="docemail" class="form-control" id="docemail" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                #docemail="ngModel" required>
             <small [hidden]="docemail.valid || (docemail.pristine && !f.submitted)" class="text-danger">
                 Email is required and format should be <i>john@doe.com</i>.
             </small>
         </div>
         <div class="col-md-3">
             <label class="control-label" for="docpassword">Password</label>
-            <input type="password" [ngModel]="doc?.docpassword" name="docpassword" class="form-control" id="docpassword" 
-            validateEqual="redocpassword" reverse="true" #docpassword="ngModel" required>
+            <input type="password" [ngModel]="doc?.docpassword" name="docpassword" class="form-control" id="docpassword" validateEqual="redocpassword"
+                reverse="true" #docpassword="ngModel" required>
             <small [hidden]="docpassword.valid || (docpassword.pristine && !f.submitted)" class="text-danger">
                 Please choose a strong Password
             </small>
-        </div>      
+        </div>
         <div class="col-md-3">
             <label class="control-label" for="redocpassword">Repeat Password</label>
-            <input type="password" [ngModel]="doc?.redocpassword" name="redocpassword" class="form-control" id="redocpassword"
-            validateEqual="docpassword" reverse="false" #redocpassword="ngModel" required>
+            <input type="password" [ngModel]="doc?.redocpassword" name="redocpassword" class="form-control" id="redocpassword" validateEqual="docpassword"
+                reverse="false" #redocpassword="ngModel" required>
             <small [hidden]="redocpassword.valid || (redocpassword.pristine && !f.submitted)" class="text-danger">
                 Password mismatch
             </small>
-        </div>            
-    </div>   
+        </div>
+    </div>
 
     <!--Speciality and License No-->
     <div class="form-group">
         <div class="col-md-6">
             <label class="control-label" for="docspeciality">Specialty</label>
-            <select class="form-control" id="docspeciality" name="docspeciality" 
-            [ngModel]="doc?.docspeciality" class="form-control" required>
+            <select class="form-control" id="docspeciality" name="docspeciality" [ngModel]="doc?.docspeciality" class="form-control"
+                required>
                 <option>Family Doctor</option>
                 <option>ENT</option>
                 <option>Physician</option>              
@@ -58,8 +56,8 @@
         <div class="col-md-6">
             <label class="control-label" for="doclicense">License No</label>
             <input type="text" [ngModel]="doc?.doclicense" name="doclicense" class="form-control" id="doclicense" required>
-        </div>       
-    </div>       
+        </div>
+    </div>
 
     <hr>
 
@@ -70,17 +68,17 @@
     <div class="form-group">
         <div class="col-md-12">
             <label class="control-label" for="docclinicname">Clinic Name</label>
-             <input type="text" [ngModel]="doc?.docclinicname" name="docclinicname" class="form-control" id="docclinicname" required>
-        </div>   
-    </div> 
+            <input type="text" [ngModel]="doc?.docclinicname" name="docclinicname" class="form-control" id="docclinicname" required>
+        </div>
+    </div>
 
     <!--Address-->
     <div class="form-group">
         <div class="col-md-12">
             <label class="control-label" for="docaddress">Address</label>
             <input type="text" [ngModel]="doc?.docaddress" name="docaddress" class="form-control" id="docaddress" required>
-        </div>   
-    </div> 
+        </div>
+    </div>
 
     <!--City and Postal Code-->
     <div class="form-group">
@@ -91,7 +89,7 @@
         <div class="col-md-6">
             <label class="control-label" for="docpostalcode">Postal Code</label>
             <input type="text" [ngModel]="doc?.docpostalcode" name="docpostalcode" class="form-control" id="docpostalcode" required>
-        </div>       
+        </div>
     </div>
 
     <!--Province and University-->
@@ -103,14 +101,20 @@
         <div class="col-md-6">
             <label class="control-label" for="docuni">University</label>
             <input type="text" [ngModel]="doc?.docuni" name="docuni" class="form-control" id="docuni" required>
-        </div>       
+        </div>
     </div>
 
     <!--Submit-->
     <div class="form-group">
         <div class="col-md-6">
             <button class="btn btn-default" type="submit" [disabled]="!f.valid">Submit Registration</button>
-        </div>     
+        </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="this.error">
+        <strong>Error!!!</strong> Registration Failed.
+    </div>
+    <div class="alert alert-info" *ngIf="this.success">
+        Registration was successful.
     </div>
 
 </form>

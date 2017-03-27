@@ -13,7 +13,8 @@ import { DocService } from '../service/doc.service';
 export class PhysicianRegComponent {
 
     availability:Availability;
-
+    error: boolean = false;
+    success: boolean = false;
     constructor(private docService: DocService){}
 
     registerDoctor(form: NgForm) {
@@ -34,7 +35,9 @@ export class PhysicianRegComponent {
         this.docService.registerDoc(doc)
             .subscribe(
                 data => {data},
-                error => console.error(error)
+                error => {
+                    console.error(error);
+                }
             );
 
         for(let i = 0; i < 2; i++){
@@ -89,8 +92,11 @@ export class PhysicianRegComponent {
                      }
                      this.docService.registerDocAvailability(this.availability)
                         .subscribe(
-                            data => {data},
-                            error => console.error(error)
+                            data => {this.success=true;},
+                            error => { 
+                                console.error(error);
+                                this.error=true;
+                            }
                         );
                  }
              }
