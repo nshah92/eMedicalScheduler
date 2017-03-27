@@ -19,13 +19,20 @@ export class AppointmentService {
             .map((response: Response) => {
                 const result = response.json();
                 const appointment = new Appointment (result.obj.patientemail,
-                                        result.obj.docfirstname, 
-                                        result.obj.doclastname,
+                                        result.obj.patientfirstname, 
+                                        result.obj.patientlastname,
                                         result.obj.patientinsurance, 
                                         result.obj.patientflexibility, 
-                                        result.obj.patientspecialneed, 
-                                        result.obj.patientreason, 
+                                        result.obj.patientspecialneed,
+                                        result.obj.patientreason,
                                         result.obj.doclicense,
+                                        result.obj.docfirstname,
+                                        result.obj.doclastname,
+                                        result.obj.docclinicname,
+                                        result.obj.docaddress,
+                                        result.obj.doccity,
+                                        result.obj.docpostalcode,
+                                        result.obj.docprovince,
                                         result.obj.date,
                                         result.obj.time);
                 return result;
@@ -57,13 +64,20 @@ export class AppointmentService {
                 for (let appointment of appointments) {
                     transformedAppointments.push(new Appointment(
                                                     appointment.patientemail,
-                                                    appointment.docfirstname,
-                                                    appointment.doclastname,
+                                                    appointment.patientfirstname,
+                                                    appointment.patientlastname,
                                                     appointment.patientinsurance,
                                                     appointment.patientflexibility,
                                                     appointment.patientspecialneed,
                                                     appointment.patientreason,
                                                     appointment.doclicense,
+                                                    appointment.docfirstname,
+                                                    appointment.doclastname,
+                                                    appointment.docclinicname,
+                                                    appointment.docaddress,
+                                                    appointment.doccity,
+                                                    appointment.docpostalcode,
+                                                    appointment.docprovince,
                                                     appointment.date,
                                                     appointment.time)
                     )

@@ -13,7 +13,7 @@
 
 <article class="panel panel-default" *ngFor="let appointment of this.appointments">
     <div class="panel-body">
-        Doctor {{ appointment.doclastname }} {{ appointment.docfirstname }} | {{ appointment.time }} | {{ appointment.date }}
+        Doctor {{ appointment.docfirstname }} {{ appointment.doclastname }} | {{ appointment.time }} | {{ appointment.date }}
     </div>
     <footer class="panel-footer">
         <div class="author">
@@ -23,7 +23,7 @@
             <br/>
             <strong>Flexible:</strong> {{ appointment.patientflexibility }}
             <br/>
-            <strong>Clinic:</strong> 
+            <strong>Clinic:</strong> {{appointment.docclinicname}}, {{appointment.docaddress}}, {{appointment.doccity}}, {{appointment.docprovince}} {{appointment.docpostalcode}}
         </div>
         <div class="config">
             <a (click)="cancelAppointment($event)" id="{{appointment.doclicense}}-{{appointment.date}}-{{appointment.time}}">
