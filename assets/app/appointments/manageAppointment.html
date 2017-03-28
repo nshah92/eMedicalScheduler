@@ -23,7 +23,9 @@
             <br/>
             <strong>Flexible:</strong> {{ appointment.patientflexibility }}
             <br/>
-            <strong>Clinic:</strong> {{appointment.docclinicname}}, {{appointment.docaddress}}, {{appointment.doccity}}, {{appointment.docprovince}} {{appointment.docpostalcode}}
+            <strong>Clinic:</strong> {{appointment.docclinicname}}. 
+            <br/>
+            <strong>Address:</strong> {{appointment.docaddress}}, {{appointment.doccity}}, {{appointment.docprovince}} {{appointment.docpostalcode}}
         </div>
         <div class="config">
             <a (click)="cancelAppointment($event)" id="{{appointment.doclicense}}-{{appointment.date}}-{{appointment.time}}">

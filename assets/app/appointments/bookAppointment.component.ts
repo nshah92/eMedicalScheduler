@@ -113,7 +113,7 @@ export class bookAppointmentComponent implements OnInit {
                                     )
                                     var ccc = this.deepIndexOf(this.availability, availability);
                                     if (ccc > 0) {
-                                        this.avail1.splice(ccc, 1);
+                                        this.availability.splice(ccc, 1);
                                     }
                                     var cc = this.deepIndexOf(this.avail1, availability);
                                     if (cc > 0) {
@@ -209,8 +209,6 @@ export class bookAppointmentComponent implements OnInit {
         var target = event.target || event.srcElement || event.currentTarget;
         var idAttr = target.attributes.id;
         var value = idAttr.nodeValue;
-        /*var property = <HTMLInputElement>document.getElementById(value);
-        property.style.backgroundColor = "black";*/
 
         if (this.property != null) {
             this.property.style.backgroundColor = "#428bca";

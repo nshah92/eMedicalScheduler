@@ -21,7 +21,7 @@ import { Flexible } from '../profile/flexible.model';
         .config {
             display: inline-block;
             text-align: right;
-            font-size: 12px;
+            font-size: 13px;
             width: 19%;
         }
     `]

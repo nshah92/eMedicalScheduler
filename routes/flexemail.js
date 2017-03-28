@@ -19,9 +19,9 @@ router.post('/', function (req, res, next) {
     });
     
     var text = 'Hello ' + firstName + ', \n\n You are recieving this email because you have a flexible appointment with Doctor ' + doclastname + '.' +
-    '\nI will like to inform you we have an opening earlier than your appointment:' +
+    '\nI will like to inform you that we have an opening earlier than your appointment:' +
     '\n\n Date: ' + date + '\nTime: ' + time +
-    '\n\n You have an hour to confirm this appointment before this is passed on to another Patient.' +
+    '\n\n Should you choose to take this time slot. You have an hour to confirm this appointment before this is passed on to another Patient.' +
     '\n\nThank You.\nE-Medical Scheduler';
     var mailOptions = {
         from: 'emedicalscheduler@gmail.com', // sender address

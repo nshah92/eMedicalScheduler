@@ -27,7 +27,8 @@ router.post('/', function (req, res, next) {
     });
     
     var text = 'Hello ' + patientFirstName + ' ' + patientLastName + ', \n\nYou have an appointment with Doctor ' + docFirstName + ' ' + docLastName + 
-    '.\nLocation - ' + docClinicName + ', ' + docAddress + ', ' + docCity + ', ' + docProvince + ', ' + docPostalCode + 
+    '.\nClinic - ' + docClinicName + '. ' + 
+    '\nAddress - ' + docAddress + ', ' + docCity + ', ' + docProvince + ', ' + docPostalCode + 
     '\nReason - ' + patientReason + '.\nDate & Time - ' + patientDate + ', ' + patientTime + 
     '\n\nThank You.\nE-Medical Scheduler';
     var mailOptions = {
